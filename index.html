@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Василина Павлович — AI Наставник</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400;1,700&family=Manrope:wght@400;500;600&family=Syne:wght@700;800&family=Lora:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <img src="assets/image-1.jpg" style="width:34px;height:34px;border-radius:50%;object-fit:cover;object-position:center 10%;border:2px solid var(--green-main);flex-shrink:0" alt="Василина">
+      <span class="nav-logo-text">Василина Павлович</span>
+    </a>
+    <div class="nav-links">
+      <a href="#about">Обо мне</a>
+      <a href="#uslugi">Услуги</a>
+      <a href="#cases">Кейсы</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <div class="nav-right">
+      <a href="https://t.me/vasilina_pavlovich7" target="_blank" class="btn-pill btn-blue nav-cta">Написать в Telegram</a>
+      <button class="hamburger" onclick="toggleMenu()" aria-label="Меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="closeMenu()">Обо мне</a>
+  <a href="#uslugi" onclick="closeMenu()">Услуги</a>
+  <a href="#cases" onclick="closeMenu()">Кейсы</a>
+  <a href="#faq" onclick="closeMenu()">FAQ</a>
+  <a href="https://t.me/vasilina_pavlovich7" target="_blank" class="btn-pill btn-blue" style="margin-top:4px;justify-content:center">Написать в Telegram</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg" id="heroBg" style="background-image:url('assets/image-4.png')"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-left">
+      <h1>Василина<br>Павлович</h1>
+      <div class="hero-subtitle-pill">Эксперт по нейросетям</div>
+      <div class="hero-buttons">
+        <a href="https://t.me/vasilina_pavlovich7" target="_blank" class="btn-pill btn-blue">Записаться</a>
+        <a href="https://t.me/vasilina_pavlovich7" target="_blank" class="btn-pill btn-outline">Бесплатная консультация 20 мин</a>
+      </div>
+    </div>
+  </div>
+  <!-- Notification bubbles -->
+  <div class="hero-notifications">
+    <div class="notif" id="n1" style="animation-delay:0s"><span class="notif-dot blue"></span>Обучаю нейросетям с нуля<span class="notif-x">×</span></div>
+    <div class="notif" id="n2" style="animation-delay:0.5s"><span class="notif-dot green"></span>Помогаю бизнесу внедрить AI<span class="notif-x">×</span></div>
+    <div class="notif" id="n3" style="animation-delay:1s"><span class="notif-dot yellow"></span>Курс AI-Фриланс · 11 уроков<span class="notif-x">×</span></div>
+  </div>
+  <!-- Pixel grass -->
+  <div class="grass-strip">
+    <svg class="pixel-grass" viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      
+      <g id="grass">
+        <rect x="0" y="52" width="1440" height="8" fill="#16a34a"/>
+      </g>
+    </svg>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats" id="stats">
+  <div class="stats-inner">
+    <div class="stat-item fade-up" id="stat-card-0">
+      <canvas class="confetti-canvas" id="conf-0"></canvas>
+      <div class="stat-ios-icon green">🌍</div>
+      <div class="stat-text">
+        <div class="stat-number"><span class="counter green" data-target="50" data-suffix="+">0+</span></div>
+        <div class="stat-label">клиентов из разных стран мира</div>
+      </div>
+    </div>
+    <div class="stat-item fade-up" id="stat-card-1" style="transition-delay:0.15s">
+      <canvas class="confetti-canvas" id="conf-1"></canvas>
+      <div class="stat-ios-icon blue">🚀</div>
+      <div class="stat-text">
+        <div class="stat-number"><span class="counter" data-target="12" data-suffix="">0</span></div>
+        <div class="stat-label">сменили профессию на AI и работают удалённо</div>
+      </div>
+    </div>
+    <div class="stat-item fade-up" id="stat-card-2" style="transition-delay:0.3s">
+      <canvas class="confetti-canvas" id="conf-2"></canvas>
+      <div class="stat-ios-icon purple">💎</div>
+      <div class="stat-text">
+        <div class="stat-number"><span class="counter" data-target="90" data-suffix="%">0%</span></div>
+        <div class="stat-label">учеников начинали с полного нуля</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-photo fade-up">
+      <div class="photo-frame">
+        <div class="photo-placeholder">
+          <!-- Photo placeholder — replace src with real photo -->
+          <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <span style="color:rgba(255,255,255,0.7);font-size:13px">Фото скоро появится</span>
+        </div>
+      </div>
+    </div>
+    <div class="fade-up" style="transition-delay:0.15s">
+      <h2>Меня зовут Василина</h2>
+      <p class="about-body">Благодаря AI ушла из найма после 4 лет в T-Инвестициях и переехала на Бали. Сейчас активно преподаю нейросети и помогаю бизнесу их использовать. Живу жизнью мечты — и помогаю другим сделать то же самое через AI.</p>
+      <blockquote class="about-quote">«AI — это самый быстрый путь кардинально изменить свою жизнь. Ты знаешь это. Не пропусти.»</blockquote>
+      <div class="about-tags">
+        <span>📍 Бали</span>
+        <span>🤖 AI с 2023</span>
+        <span>👥 50+ клиентов</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS MARQUEE -->
+<section class="tools-logos" id="tools">
+  <div class="section-inner" style="text-align:center;margin-bottom:32px">
+    <span class="section-label">AI-инструменты</span>
+    <h2 class="section-heading fade-up" style="margin-top:12px">Нейросети, с которыми я работаю</h2>
+    <p class="fade-up" style="color:var(--text-secondary);font-size:17px">24 AI-сервиса, которые меняют мир прямо сейчас</p>
+  </div>
+  <div class="logos-overflow">
+    <div class="logos-track marquee-right"><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=openai.com&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">ChatGPT</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=claude.ai&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Claude</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=gemini.google.com&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Gemini</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=midjourney.com&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Midjourney</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=perplexity.ai&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Perplexity</span></div><div class="logo-pill"><span style="width:30px;height:30px;border-radius:8px;background:#10a37f;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:white;flex-shrink:0">S</span><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Sora</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=x.ai&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Grok</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=mistral.ai&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Mistral</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=openai.com&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">ChatGPT</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=claude.ai&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Claude</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=gemini.google.com&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Gemini</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=midjourney.com&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Midjourney</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=perplexity.ai&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Perplexity</span></div><div class="logo-pill"><span style="width:30px;height:30px;border-radius:8px;background:#10a37f;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:white;flex-shrink:0">S</span><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Sora</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=x.ai&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Grok</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=mistral.ai&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Mistral</span></div></div>
+    <div class="logos-track marquee-left"><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=cursor.sh&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Cursor</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=n8n.io&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">n8n</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=make.com&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Make</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=gamma.app&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Gamma</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=notion.so&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Notion</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=canva.com&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Canva</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=figma.com&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Figma</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=capcut.com&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">CapCut</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=cursor.sh&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Cursor</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=n8n.io&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">n8n</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=make.com&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Make</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=gamma.app&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Gamma</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=notion.so&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Notion</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=canva.com&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Canva</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=figma.com&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Figma</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=capcut.com&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">CapCut</span></div></div>
+    <div class="logos-track marquee-right"><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=runwayml.com&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Runway</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=klingai.com&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Kling</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=elevenlabs.io&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">ElevenLabs</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=heygen.com&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">HeyGen</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=leonardo.ai&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Leonardo</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=stability.ai&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Stable Diffusion</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=pika.art&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Pika</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=lumalabs.ai&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Luma AI</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=runwayml.com&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Runway</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=klingai.com&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Kling</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=elevenlabs.io&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">ElevenLabs</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=heygen.com&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">HeyGen</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=leonardo.ai&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Leonardo</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=stability.ai&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Stable Diffusion</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=pika.art&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Pika</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=lumalabs.ai&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Luma AI</span></div></div>
+  </div>
+</section>
+
+<!-- FOR WHOM -->
+<section class="forwhom" id="dlya-kogo">
+  <div class="section-inner">
+    <h2 class="section-heading fade-up">Вам сюда, если...</h2>
+    <div class="grid-2x2">
+      <div class="card fade-up">
+        <div class="card-icon">🎯</div>
+        <h3>Хотите освоить нейросети с нуля</h3>
+        <p>Объясню просто, с нуля, без технических терминов. Начнём с того, что нужно именно вам.</p>
+      </div>
+      <div class="card fade-up" style="transition-delay:0.1s">
+        <div class="card-icon">💼</div>
+        <h3>Ведёте бизнес и хотите внедрить AI</h3>
+        <p>Найдём точки автоматизации под ваши задачи. Сэкономим время и деньги.</p>
+      </div>
+      <div class="card fade-up" style="transition-delay:0.2s">
+        <div class="card-icon">📈</div>
+        <h3>Чувствуете что теряете актуальность</h3>
+        <p>Освоим инструменты которые усилят вас на рынке. Будете впереди конкурентов.</p>
+      </div>
+      <div class="card fade-up" style="transition-delay:0.3s">
+        <div class="card-icon">💻</div>
+        <h3>Хотите зарабатывать на AI удалённо</h3>
+        <p>Три профессии с нуля до первого заказа. Работает из любой точки мира.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="uslugi">
+  <div class="section-inner">
+
+    <!-- Block 1: Обучение -->
+    <div id="obuchenie" style="margin-bottom:0;position:relative;overflow:hidden;border-radius:0;margin-left:-24px;margin-right:-24px">
+  <div style="position:absolute;inset:0;background:url('assets/image-5.png') center/cover no-repeat;filter:brightness(0.55)"></div>
+  <div style="position:relative;z-index:1;padding:72px 48px;max-width:900px;margin:0 auto">
+    <span class="section-label" style="background:rgba(255,255,255,0.18);color:#fff;border:1px solid rgba(255,255,255,0.4)">№01 · Обучение</span>
+    
+      <span class="section-label">№01 · Обучение</span>
+      <h2 class="section-heading fade-up" style="color:#fff">Обучение нейросетям с нуля</h2>
+      <p class="fade-up" style="color:rgba(255,255,255,0.85);max-width:600px">Разберём главные AI-инструменты: как скачать из России, оплатить, настроить под себя, какие выбрать и для каких задач.</p>
+      <div class="accordion fade-up">
+        <div class="acc-header" onclick="toggleAcc(this)">
+          Программа обучения
+          <span class="acc-chevron">▾</span>
+        </div>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <div class="acc-lesson"><div class="acc-num">1</div><div><strong>Старт</strong> — что такое AI, инструменты, как скачать и оплатить из России, что умеют нейросети</div></div>
+            <div class="acc-lesson"><div class="acc-num">2</div><div><strong>Настройка под себя</strong> — кастомизируем под твой стиль, язык и задачи</div></div>
+            <div class="acc-lesson"><div class="acc-num">3</div><div><strong>Текст и ChatGPT</strong> — сильные запросы, применение в работе и жизни</div></div>
+            <div class="acc-lesson"><div class="acc-num">4</div><div><strong>Визуал и видео</strong> — картинки, AI-аватар, озвучка, короткие ролики</div></div>
+            <div class="acc-lesson"><div class="acc-num">5</div><div><strong>Автоматизация</strong> — совмещаем нейросети, первые агенты</div></div>
+            <p style="font-style:italic;color:var(--text-secondary);font-size:14px;margin-top:8px">Это база — программу адаптируем под твой запрос</p>
+          </div>
+        </div>
+      </div>
+      <div class="pricing-card fade-up">
+        <div class="price-main">3 000 ₽</div>
+        <div class="price-sub">/1.5 часа · видеосвязь</div>
+        <div class="badge-promo">−15% на пакет 5 уроков</div>
+        <p><span class="price-strike">15 000 ₽</span> → <span class="price-new">12 750 ₽</span></p>
+        <div class="badge-urgency">🔥 Только 3 места в июне</div>
+        <p style="font-size:14px;color:var(--text-secondary);margin-bottom:20px">🎁 Бесплатная консультация 20 мин для новых</p>
+        <a href="https://t.me/vasilina_pavlovich7" target="_blank" class="btn-pill btn-blue">Записаться →</a>
+      </div>
+    
+  </div>
+</div>
+
+    <!-- Block 2: Бизнес -->
+    <div id="biznes" style="margin-bottom:64px">
+      <span class="section-label">№02 · Для бизнеса</span>
+      <h2 class="section-heading fade-up">Внедряю AI в твой бизнес</h2>
+      <div class="services-grid">
+        <div class="service-card fade-up">
+          <div class="service-icon">🤖</div>
+          <h3>Telegram-боты</h3>
+          <ul>
+            <li>Приём заявок и запись клиентов</li>
+            <li>Проверка подписки + выдача доступа</li>
+            <li>Оплата продуктов прямо в Telegram</li>
+            <li>Автоответчик — FAQ, цены, часы работы</li>
+            <li>Воронка продаж — прогревает до покупки</li>
+          </ul>
+          <a href="https://t.me/vasilina_pavlovich7" target="_blank" class="btn-pill btn-blue">Заказать бота →</a>
+        </div>
+        <div class="service-card fade-up" style="transition-delay:0.1s">
+          <div class="service-icon">✨</div>
+          <h3>AI-контент</h3>
+          <ul>
+            <li>Креативы для соцсетей — посты, сторис, обложки</li>
+            <li>Рекламные баннеры для Директ и VK</li>
+            <li>Нейрофотосессия для личного бренда</li>
+            <li>Карточки товаров для маркетплейсов</li>
+            <li>Видеоролики и анимация</li>
+            <li>Контент-пакет — 20-30 изображений</li>
+          </ul>
+          <a href="https://t.me/vasilina_pavlovich7" target="_blank" class="btn-pill btn-blue">Заказать контент →</a>
+        </div>
+        <div class="service-card fade-up" style="transition-delay:0.2s">
+          <div class="service-icon">🖥️</div>
+          <h3>Лендинг</h3>
+          <ul>
+            <li>Для эксперта или онлайн-курса</li>
+            <li>Для услуги или продукта</li>
+            <li>Для мероприятия или запуска</li>
+            <li>Текст, структура, дизайн — под ключ</li>
+            <li>Кнопка в Telegram или форма заявки</li>
+          </ul>
+          <a href="https://t.me/vasilina_pavlovich7" target="_blank" class="btn-pill btn-blue">Заказать лендинг →</a>
+        </div>
+        <div class="service-card fade-up" style="transition-delay:0.3s">
+          <div class="service-icon">💬</div>
+          <h3>Консультация по AI</h3>
+          <p style="color:var(--text-secondary);font-size:15px;margin-bottom:16px">Обсудим как использовать нейросети в вашем бизнесе или жизни — и я дам пошаговый план внедрения.</p>
+          <div style="display:inline-flex;background:var(--green-light);color:var(--green-dark);border:1px solid var(--green-main);padding:6px 14px;border-radius:var(--radius-pill);font-weight:600;margin-bottom:8px;font-size:15px">5 000 ₽ / 1.5 часа</div>
+          <p style="font-size:14px;color:var(--text-secondary);margin-bottom:16px">🎁 Бесплатная консультация 20 мин для новых</p>
+          <a href="https://t.me/vasilina_pavlovich7" target="_blank" class="btn-pill btn-blue">Записаться →</a>
+        </div>
+      </div>
+      <div class="banner-promo fade-up">🎁 Стартовый пакет: лендинг + бот вместе — скидка 10%</div>
+    </div>
+
+    <!-- Block 3: Курс -->
+    <div id="kurs">
+      <span class="section-label">№03 · Курс</span>
+      <h2 class="section-heading fade-up">Курс AI-Фриланс</h2>
+      <p class="fade-up" style="color:var(--text-secondary);max-width:620px">Курс по трём топовым AI-профессиям для выхода на удалённую работу. 11 уроков в записи — смотришь в своём темпе.</p>
+      <div class="fade-up" style="margin:24px 0">
+        <a href="https://www.youtube.com/watch?v=oY5eFY_Ui5Y&t=14s" target="_blank" style="display:inline-flex;align-items:center;gap:12px;background:#ff0000;color:#fff;padding:12px 22px;border-radius:var(--radius-pill);text-decoration:none;font-weight:600;font-size:15px;transition:all 0.3s;box-shadow:0 4px 16px rgba(255,0,0,0.3)" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-2.71 12.12 12.12 0 0 0-3.82-.66 12.12 12.12 0 0 0-3.82.66 4.83 4.83 0 0 1-3.77 2.71A4.92 4.92 0 0 0 2 11.26a4.92 4.92 0 0 0 2.41 4.57 4.83 4.83 0 0 1 3.77 2.71 12.12 12.12 0 0 0 3.82.66 12.12 12.12 0 0 0 3.82-.66 4.83 4.83 0 0 1 3.77-2.71A4.92 4.92 0 0 0 22 11.26a4.92 4.92 0 0 0-2.41-4.57z"/><polygon points="9.75 15.02 15.5 11.26 9.75 7.5 9.75 15.02" fill="red" stroke="none"/></svg>
+          ▶ Смотреть 1-й урок бесплатно
+        </a>
+        <span style="margin-left:12px;font-size:13px;color:var(--text-secondary)">→ Урок 1 на YouTube</span>
+      </div>
+      <div class="professions-grid">
+        <div class="prof-card fade-up">
+          <span class="prof-emoji">📝</span>
+          <h3>AI-контент менеджер</h3>
+          <p>Создаю контент с помощью нейросетей для брендов и экспертов</p>
+        </div>
+        <div class="prof-card fade-up" style="transition-delay:0.15s">
+          <span class="prof-emoji">🎨</span>
+          <h3>AI-дизайнер</h3>
+          <p>Генерирую визуал, баннеры, нейрофото, видео</p>
+        </div>
+        <div class="prof-card fade-up" style="transition-delay:0.3s">
+          <span class="prof-emoji">⚙️</span>
+          <h3>AI-интегратор</h3>
+          <p>Настраиваю AI-инструменты и автоматизации для бизнеса</p>
+        </div>
+      </div>
+      <div class="price-center fade-up">
+        <div class="price-big">12 000 ₽</div>
+        <div style="color:var(--text-secondary);margin:8px 0 24px">11 уроков в записи · Смотришь в своём темпе</div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;align-items:center">
+          <a href="https://t.me/vasilina_pavlovich7" target="_blank" class="btn-pill btn-blue btn-big">Купить курс →</a>
+          <a href="YOUR_YOUTUBE_LINK" target="_blank" class="btn-pill btn-outline-green btn-big">▶ Посмотреть бесплатный первый урок</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CASES -->
+<section class="cases-premium" id="cases">
+  <div class="section-inner">
+    <span class="section-label">Результаты</span>
+    <h2 class="section-heading fade-up" style="margin-top:12px">Кейсы и отзывы</h2>
+    <p class="section-sub fade-up">Реальные истории людей, которые изменили свою жизнь с помощью AI</p>
+    <div class="reviews-scroll-wrapper">
+      <button class="reviews-nav reviews-prev" onclick="scrollReviews(-1)">&#8592;</button>
+      <div class="reviews-track" id="reviewsTrack">
+
+        <div class="review-card fade-up">
+          <div class="review-avatar">
+            <div class="pixel-face" data-initials="АН" data-color="#22c55e"></div>
+          </div>
+          <div class="review-content">
+            <p class="review-text">«Хочу уйти из найма, не знаю какую нишу выбрать»</p>
+            <p class="review-result">Разобрали AI-профессии, выбрала контент — и через 18 дней первый заказ.</p>
+            <div class="review-meta">
+              <span class="review-name">Анна</span>
+              <span class="review-role">SMM-специалист · Санкт-Петербург</span>
+              <span class="review-outcome">💰 Первый заказ через 18 дней</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card fade-up" style="transition-delay:0.1s">
+          <div class="review-avatar">
+            <div class="pixel-face" data-initials="АМ" data-color="#3b82f6"></div>
+          </div>
+          <div class="review-content">
+            <p class="review-text">«Теряем клиентов, не успеваем отвечать»</p>
+            <p class="review-result">Поставили Telegram-бот с записью и оплатой — запись выросла моментально.</p>
+            <div class="review-meta">
+              <span class="review-name">Артём</span>
+              <span class="review-role">Салон красоты · Москва</span>
+              <span class="review-outcome">📈 Запись выросла на 40%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card fade-up" style="transition-delay:0.2s">
+          <div class="review-avatar">
+            <div class="pixel-face" data-initials="КС" data-color="#f59e0b"></div>
+          </div>
+          <div class="review-content">
+            <p class="review-text">«Пробовала ChatGPT, бросила — не понимаю как встроить в работу»</p>
+            <p class="review-result">Настроили под задачи. Теперь разрабатывает собственный AI-продукт.</p>
+            <div class="review-meta">
+              <span class="review-name">Ксения</span>
+              <span class="review-role">Маркетолог · Бали</span>
+              <span class="review-outcome">🚀 Разрабатывает AI-продукт</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card fade-up">
+          <div class="review-avatar">
+            <div class="pixel-face" data-initials="ИГ" data-color="#8b5cf6"></div>
+          </div>
+          <div class="review-content">
+            <p class="review-text">«Надоело за копейки, хочу своё дело»</p>
+            <p class="review-result">AI-контент для бизнеса как услуга, уже трое клиентов.</p>
+            <div class="review-meta">
+              <span class="review-name">Игорь</span>
+              <span class="review-role">Копирайтер · Сочи</span>
+              <span class="review-outcome">🎯 Ушёл из найма, 3 клиента</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card fade-up" style="transition-delay:0.1s">
+          <div class="review-avatar">
+            <div class="pixel-face" data-initials="СВ" data-color="#ec4899"></div>
+          </div>
+          <div class="review-content">
+            <p class="review-text">«Хочу перестроиться пока не поздно»</p>
+            <p class="review-result">Автоматизация, AI-процессы — сейчас консультирует компании по AI.</p>
+            <div class="review-meta">
+              <span class="review-name">Светлана</span>
+              <span class="review-role">Бухгалтер → AI-консультант · Барселона</span>
+              <span class="review-outcome">🌍 Консультирует компании по AI</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card fade-up" style="transition-delay:0.2s">
+          <div class="review-avatar">
+            <div class="pixel-face" data-initials="НК" data-color="#10b981"></div>
+          </div>
+          <div class="review-content">
+            <p class="review-text">«Вообще не понимаю компьютеры»</p>
+            <p class="review-result">С нуля, по шагам — сейчас делает визуал для соцсетей и хочет зарабатывать.</p>
+            <div class="review-meta">
+              <span class="review-name">Настя</span>
+              <span class="review-role">Продавец-консультант → AI-дизайнер</span>
+              <span class="review-outcome">✨ AI-дизайнер с нуля</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <button class="reviews-nav reviews-next" onclick="scrollReviews(1)">&#8594;</button>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="section-inner">
+    <h2 class="section-heading fade-up">Частые вопросы</h2>
+    <div class="faq-list">
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Нужен ли опыт в программировании?<span class="faq-chevron">▾</span></div><div class="faq-a"><div class="faq-a-inner">Нет. Начинаем с самого начала, простым языком без терминов. Нужно только желание.</div></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Как проходит урок?<span class="faq-chevron">▾</span></div><div class="faq-a"><div class="faq-a-inner">По видеосвязи в Яндекс Мост или Google Meet. 1.5 часа — разбираем тему, практикуемся вместе, отвечаю на вопросы.</div></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Я совсем новичок — подойдёт?<span class="faq-chevron">▾</span></div><div class="faq-a"><div class="faq-a-inner">Именно для таких и работаю. Большинство клиентов приходят с нулём. Главное не опыт, а запрос.</div></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Из какой страны можно?<span class="faq-chevron">▾</span></div><div class="faq-a"><div class="faq-a-inner">Из любой. Работаю онлайн — Россия, Дубай, Барселона, Бали и другие страны.</div></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Я из России — смогу оплатить подписки на нейросети?<span class="faq-chevron">▾</span></div><div class="faq-a"><div class="faq-a-inner">Да, всё решаемо. Разберём как зарегистрироваться и оплатить из РФ — покажу рабочие варианты.</div></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">В каком формате курс AI-Фриланс?<span class="faq-chevron">▾</span></div><div class="faq-a"><div class="faq-a-inner">11 уроков в записи. Смотришь когда удобно, в своём темпе. Никаких дедлайнов.</div></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Как записаться и оплатить?<span class="faq-chevron">▾</span></div><div class="faq-a"><div class="faq-a-inner">Напиши в Telegram — обсудим формат. Оплата: российская карта, иностранная карта или крипта.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="section-inner">
+    <div class="cta-box fade-up">
+      <div>
+        <div class="online-badge"><span class="online-dot"></span> 🟢 Online</div>
+        <div class="polaroid">
+          <div class="polaroid-img">
+            <!-- Photo placeholder — replace src with real photo -->
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <p class="polaroid-name">Василина</p>
+        </div>
+      </div>
+      <div>
+        <h2>Всё ещё думаешь?</h2>
+        <p>Напиши мне — разберёмся что подойдёт именно тебе.</p>
+        <p class="cta-quote">Ты знаешь что AI — самый быстрый путь к твоему успеху. Не откладывай это и начни менять свою жизнь.</p>
+        <a href="https://t.me/vasilina_pavlovich7" target="_blank" class="btn-pill btn-blue btn-big">Написать @vasilina_pavlovich7 →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="position:relative;overflow:hidden;background:#0a1a0f">
+  <!-- Grass image bg -->
+  <img src="assets/image-2.png" style="width:100%;display:block;height:auto;position:absolute;bottom:0;left:0;right:0;opacity:0.85;pointer-events:none" alt="">
+  <!-- Overlay for readability -->
+  <div style="position:absolute;inset:0;background:linear-gradient(to bottom, rgba(10,26,15,0.82) 0%, rgba(10,26,15,0.55) 60%, rgba(10,26,15,0.2) 100%);pointer-events:none"></div>
+  <!-- Content -->
+  <div class="footer-inner" style="position:relative;z-index:2">
+    <div>
+      <div class="footer-logo">
+        <img src="assets/image-3.jpg" style="width:40px;height:40px;border-radius:50%;object-fit:cover;object-position:center 10%;border:2px solid var(--green-main)" alt="Василина">
+        <span class="footer-logo-text" style="color:#fff">Василина Павлович</span>
+      </div>
+      <p class="footer-tagline" style="color:rgba(255,255,255,0.7)">AI наставник · Бали</p>
+      <a href="https://t.me/vasilina_pavlovich7" target="_blank" class="footer-link" style="color:rgba(255,255,255,0.8)">✈️ Telegram @vasilina_pavlovich7</a>
+      <a href="https://instagram.com/vasilina_pavlovich" target="_blank" class="footer-link" style="color:rgba(255,255,255,0.8)">📸 Instagram @vasilina_pavlovich</a>
+    </div>
+    <div class="footer-links-col">
+      <h4 style="color:#fff">Навигация</h4>
+      <a href="#about" style="color:rgba(255,255,255,0.7)">Обо мне</a>
+      <a href="#uslugi" style="color:rgba(255,255,255,0.7)">Услуги</a>
+      <a href="#cases" style="color:rgba(255,255,255,0.7)">Кейсы</a>
+      <a href="#faq" style="color:rgba(255,255,255,0.7)">FAQ</a>
+    </div>
+    <div class="footer-links-col">
+      <h4 style="color:#fff">Услуги</h4>
+      <a href="#obuchenie" style="color:rgba(255,255,255,0.7)">Обучение нейросетям</a>
+      <a href="#biznes" style="color:rgba(255,255,255,0.7)">AI для бизнеса</a>
+      <a href="#kurs" style="color:rgba(255,255,255,0.7)">Курс AI-Фриланс</a>
+    </div>
+  </div>
+  <div class="footer-bottom" style="position:relative;z-index:2;color:rgba(255,255,255,0.5);padding-bottom:180px">Сайт создан с помощью AI · © 2026 Василина Павлович · @vasilina_pavlovich7</div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
