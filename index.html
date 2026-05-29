@@ -454,10 +454,8 @@
 
 <!-- FOOTER -->
 <footer style="position:relative;overflow:hidden;background:#0a1a0f">
-  <!-- Grass image bg -->
-  <img src="assets/image-2.png" style="width:100%;display:block;height:auto;position:absolute;bottom:0;left:0;right:0;opacity:0.85;pointer-events:none" alt="">
-  <!-- Overlay for readability -->
-  <div style="position:absolute;inset:0;background:linear-gradient(to bottom, rgba(10,26,15,0.82) 0%, rgba(10,26,15,0.55) 60%, rgba(10,26,15,0.2) 100%);pointer-events:none"></div>
+  <!-- Pixel bg image — full brightness, no dark overlay -->
+  <img src="assets/image-2.png" style="width:100%;display:block;height:auto;position:absolute;bottom:0;left:0;right:0;opacity:1;pointer-events:none;filter:brightness(1.5) saturate(1.6) contrast(1.1)" alt="">
   <!-- Content -->
   <div class="footer-inner" style="position:relative;z-index:2">
     <div>
@@ -465,9 +463,12 @@
         <img src="assets/image-3.jpg" style="width:40px;height:40px;border-radius:50%;object-fit:cover;object-position:center 10%;border:2px solid var(--green-main)" alt="Василина">
         <span class="footer-logo-text" style="color:#fff">Василина Павлович</span>
       </div>
-      <p class="footer-tagline" style="color:rgba(255,255,255,0.7)">AI наставник · Бали</p>
-      <a href="https://t.me/vasilina_pavlovich7" target="_blank" class="footer-link" style="color:rgba(255,255,255,0.8)">✈️ Telegram @vasilina_pavlovich7</a>
-      <a href="https://instagram.com/vasilina_pavlovich" target="_blank" class="footer-link" style="color:rgba(255,255,255,0.8)">📸 Instagram @vasilina_pavlovich</a>
+      <div style="display:flex;flex-direction:column;gap:12px;margin-top:16px">
+        <a href="https://t.me/vasilina_pavlovich7" target="_blank" class="footer-link" style="color:rgba(255,255,255,0.9)">📱 Telegram @vasilina_pavlovich7</a>
+        <a href="https://instagram.com/vasilina_pavlovich" target="_blank" class="footer-link" style="color:rgba(255,255,255,0.9)">📸 Instagram @vasilina_pavlovich</a>
+        <a href="https://t.me/deviichnik_ai" target="_blank" class="footer-link" style="color:rgba(255,255,255,0.9)">📢 Telegram-канал @deviichnik_ai</a>
+        <a href="https://youtube.com/@deviichnik_ai" target="_blank" class="footer-link" style="color:rgba(255,255,255,0.9)">▶️ YouTube @deviichnik_ai</a>
+      </div>
     </div>
     <div class="footer-links-col">
       <h4 style="color:#fff">Навигация</h4>
@@ -483,7 +484,7 @@
       <a href="#kurs" style="color:rgba(255,255,255,0.7)">Курс AI-Фриланс</a>
     </div>
   </div>
-  <div class="footer-bottom" style="position:relative;z-index:2;color:rgba(255,255,255,0.5);padding-bottom:180px">Сайт создан с помощью AI · © 2026 Василина Павлович · @vasilina_pavlovich7</div>
+  <div class="footer-bottom" style="position:relative;z-index:2;color:rgba(255,255,255,0.6);padding-bottom:180px">Спасибо GPT и Claude за помощь в создании этого сайта 💚 · © 2026 Василина Павлович · @vasilina_pavlovich7</div>
 </footer>
 
 <script src="script.js"></script>
