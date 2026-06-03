@@ -101,20 +101,19 @@ function scrollReviews(dir) {
   }, 3200);
 })();
 
-// ---- SEQUENTIAL COUNTERS (one by one) ----
-// Override: fire counter 0 → wait finish → fire counter 1 → wait → fire counter 2
+// ---- SIMULTANEOUS COUNTERS ----
 (function(){
   const counters = document.querySelectorAll('.counter');
   if (!counters.length) return;
-  
-  function animateCounter(el, onDone) {
+
+  function animateCounter(el) {
     const target = +el.dataset.target;
     const suffix = el.dataset.suffix || '';
     const cardEl = el.closest('.stat-item');
     const confId = cardEl ? cardEl.querySelector('.confetti-canvas')?.id : null;
     let current = 0;
-    const steps = 55;
-    const duration = 1600;
+    const duration = 1200;
+    const steps = 60;
     const increment = target / steps;
     const interval = duration / steps;
     const t = setInterval(() => {
@@ -123,28 +122,22 @@ function scrollReviews(dir) {
         el.textContent = target + suffix;
         clearInterval(t);
         if (confId && cardEl) setTimeout(() => { launchConfetti(confId, cardEl); }, 80);
-        if (onDone) setTimeout(onDone, 900);
       } else {
         el.textContent = Math.floor(current) + suffix;
       }
     }, interval);
   }
-  
-  let seqStarted = false;
-  const seqIO = new IntersectionObserver(entries => {
+
+  let started = false;
+  const io = new IntersectionObserver(entries => {
     entries.forEach(e => {
-      if (e.isIntersecting && !seqStarted) {
-        seqStarted = true;
-        // Fire in sequence
-        animateCounter(counters[0], () => {
-          if (counters[1]) animateCounter(counters[1], () => {
-            if (counters[2]) animateCounter(counters[2], null);
-          });
-        });
-        seqIO.disconnect();
+      if (e.isIntersecting && !started) {
+        started = true;
+        counters.forEach(c => animateCounter(c));
+        io.disconnect();
       }
     });
   }, { threshold: 0.4 });
-  
-  if (counters[0]) seqIO.observe(counters[0].closest('.stats') || counters[0]);
+
+  if (counters[0]) io.observe(counters[0].closest('.stats') || counters[0]);
 })();

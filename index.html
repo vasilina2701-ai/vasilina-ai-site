@@ -73,30 +73,55 @@
 
 <!-- STATS -->
 <section class="stats" id="stats">
-  <div class="stats-inner">
-    <div class="stat-item fade-up" id="stat-card-0">
-      <canvas class="confetti-canvas" id="conf-0"></canvas>
-      <div class="stat-ios-icon green">🌍</div>
-      <div class="stat-text">
+  <div class="stats-section-inner">
+    <h2 class="stats-heading fade-up">Результаты учеников и клиентов</h2>
+    <p class="stats-sub fade-up">Помогаю освоить AI, начать зарабатывать удалённо и внедрять нейросети в бизнес.</p>
+    <div class="stats-card fade-up">
+
+      <div class="stat-col stat-item" id="stat-card-0">
+        <canvas class="confetti-canvas" id="conf-0"></canvas>
+        <div class="stat-svg-icon green">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            <path d="M2 12h20"/>
+          </svg>
+        </div>
         <div class="stat-number"><span class="counter green" data-target="50" data-suffix="+">0+</span></div>
-        <div class="stat-label">клиентов из разных стран мира</div>
+        <div class="stat-label">клиентов из 10+ стран мира</div>
       </div>
-    </div>
-    <div class="stat-item fade-up" id="stat-card-1" style="transition-delay:0.15s">
-      <canvas class="confetti-canvas" id="conf-1"></canvas>
-      <div class="stat-ios-icon blue">🚀</div>
-      <div class="stat-text">
-        <div class="stat-number"><span class="counter" data-target="12" data-suffix="">0</span></div>
-        <div class="stat-label">сменили профессию на AI и работают удалённо</div>
+
+      <div class="stat-divider"></div>
+
+      <div class="stat-col stat-item" id="stat-card-1">
+        <canvas class="confetti-canvas" id="conf-1"></canvas>
+        <div class="stat-svg-icon blue">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
+            <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
+            <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
+            <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
+          </svg>
+        </div>
+        <div class="stat-number"><span class="counter blue" data-target="12" data-suffix="">0</span></div>
+        <div class="stat-label">учеников уже зарабатывают на AI</div>
       </div>
-    </div>
-    <div class="stat-item fade-up" id="stat-card-2" style="transition-delay:0.3s">
-      <canvas class="confetti-canvas" id="conf-2"></canvas>
-      <div class="stat-ios-icon purple">💎</div>
-      <div class="stat-text">
-        <div class="stat-number"><span class="counter" data-target="90" data-suffix="%">0%</span></div>
-        <div class="stat-label">учеников начинали с полного нуля</div>
+
+      <div class="stat-divider"></div>
+
+      <div class="stat-col stat-item" id="stat-card-2">
+        <canvas class="confetti-canvas" id="conf-2"></canvas>
+        <div class="stat-svg-icon orange">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 3h12l4 6-10 13L2 9z"/>
+            <path d="M11 3 8 9l4 13 4-13-3-6"/>
+            <path d="M2 9h20"/>
+          </svg>
+        </div>
+        <div class="stat-number"><span class="counter orange" data-target="90" data-suffix="%">0%</span></div>
+        <div class="stat-label">приходят без опыта и начинают с нуля</div>
       </div>
+
     </div>
   </div>
 </section>
@@ -126,45 +151,94 @@
   </div>
 </section>
 
-<!-- TOOLS MARQUEE -->
+<!-- TOOLS GRID -->
 <section class="tools-logos" id="tools">
-  <div class="section-inner" style="text-align:center;margin-bottom:32px">
-    <span class="section-label">AI-инструменты</span>
-    <h2 class="section-heading fade-up" style="margin-top:12px">Нейросети, с которыми я работаю</h2>
-    <p class="fade-up" style="color:var(--text-secondary);font-size:17px">24 AI-сервиса, которые меняют мир прямо сейчас</p>
+  <div class="section-inner" style="text-align:center;margin-bottom:40px">
+    <h2 class="section-heading fade-up">Нейросети, с которыми я работаю</h2>
+    <p class="fade-up tools-desc">
+      Это инструменты, которые помогают мне зарабатывать удалённо и экономить десятки часов каждую неделю.<br>
+      Научу пользоваться ими для работы, бизнеса и жизни с нуля.
+    </p>
+    <a href="https://t.me/vasilina_pavlovich7" target="_blank" class="fade-up tools-accent-pill">Показать, как использовать AI в моей ситуации →</a>
   </div>
+  <!-- Row 1 → right -->
   <div class="logos-overflow">
-    <div class="logos-track marquee-right"><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=openai.com&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">ChatGPT</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=claude.ai&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Claude</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=gemini.google.com&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Gemini</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=midjourney.com&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Midjourney</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=perplexity.ai&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Perplexity</span></div><div class="logo-pill"><span style="width:30px;height:30px;border-radius:8px;background:#10a37f;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:white;flex-shrink:0">S</span><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Sora</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=x.ai&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Grok</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=mistral.ai&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Mistral</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=openai.com&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">ChatGPT</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=claude.ai&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Claude</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=gemini.google.com&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Gemini</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=midjourney.com&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Midjourney</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=perplexity.ai&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Perplexity</span></div><div class="logo-pill"><span style="width:30px;height:30px;border-radius:8px;background:#10a37f;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:white;flex-shrink:0">S</span><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Sora</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=x.ai&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Grok</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=mistral.ai&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Mistral</span></div></div>
-    <div class="logos-track marquee-left"><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=cursor.sh&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Cursor</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=n8n.io&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">n8n</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=make.com&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Make</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=gamma.app&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Gamma</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=notion.so&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Notion</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=canva.com&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Canva</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=figma.com&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Figma</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=capcut.com&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">CapCut</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=cursor.sh&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Cursor</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=n8n.io&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">n8n</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=make.com&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Make</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=gamma.app&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Gamma</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=notion.so&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Notion</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=canva.com&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Canva</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=figma.com&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Figma</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=capcut.com&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">CapCut</span></div></div>
-    <div class="logos-track marquee-right"><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=runwayml.com&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Runway</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=klingai.com&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Kling</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=elevenlabs.io&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">ElevenLabs</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=heygen.com&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">HeyGen</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=leonardo.ai&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Leonardo</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=stability.ai&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Stable Diffusion</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=pika.art&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Pika</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=lumalabs.ai&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Luma AI</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=runwayml.com&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Runway</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=klingai.com&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Kling</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=elevenlabs.io&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">ElevenLabs</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=heygen.com&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">HeyGen</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=leonardo.ai&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Leonardo</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=stability.ai&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Stable Diffusion</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=pika.art&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Pika</span></div><div class="logo-pill"><img src="https://www.google.com/s2/favicons?domain=lumalabs.ai&sz=64" style="width:30px;height:30px;border-radius:8px;object-fit:contain" onerror="this.style.display='none'"><span style="font-weight:600;font-size:14px;color:var(--text-primary)">Luma AI</span></div></div>
+    <div class="logos-track marquee-right">
+      <div class="logo-pill"><img class="logo-img" src="https://www.google.com/s2/favicons?domain=openai.com&sz=64" onerror="this.style.display='none'" alt=""><span class="logo-name">ChatGPT</span></div>
+      <div class="logo-pill"><img class="logo-img" src="https://www.google.com/s2/favicons?domain=claude.ai&sz=64" onerror="this.style.display='none'" alt=""><span class="logo-name">Claude</span></div>
+      <div class="logo-pill"><img class="logo-img" src="https://www.google.com/s2/favicons?domain=gemini.google.com&sz=64" onerror="this.style.display='none'" alt=""><span class="logo-name">Gemini</span></div>
+      <div class="logo-pill"><img class="logo-img" src="https://www.google.com/s2/favicons?domain=x.ai&sz=64" onerror="this.style.display='none'" alt=""><span class="logo-name">Grok</span></div>
+      <div class="logo-pill"><img class="logo-img" src="https://www.google.com/s2/favicons?domain=perplexity.ai&sz=64" onerror="this.style.display='none'" alt=""><span class="logo-name">Perplexity</span></div>
+      <div class="logo-pill"><img class="logo-img" src="https://www.google.com/s2/favicons?domain=cursor.sh&sz=64" onerror="this.style.display='none'" alt=""><span class="logo-name">Cursor</span></div>
+      <div class="logo-pill"><img class="logo-img" src="https://www.google.com/s2/favicons?domain=n8n.io&sz=64" onerror="this.style.display='none'" alt=""><span class="logo-name">n8n</span></div>
+      <div class="logo-pill"><img class="logo-img" src="https://www.google.com/s2/favicons?domain=make.com&sz=64" onerror="this.style.display='none'" alt=""><span class="logo-name">Make</span></div>
+      <!-- duplicate for seamless loop -->
+      <div class="logo-pill"><img class="logo-img" src="https://www.google.com/s2/favicons?domain=openai.com&sz=64" onerror="this.style.display='none'" alt=""><span class="logo-name">ChatGPT</span></div>
+      <div class="logo-pill"><img class="logo-img" src="https://www.google.com/s2/favicons?domain=claude.ai&sz=64" onerror="this.style.display='none'" alt=""><span class="logo-name">Claude</span></div>
+      <div class="logo-pill"><img class="logo-img" src="https://www.google.com/s2/favicons?domain=gemini.google.com&sz=64" onerror="this.style.display='none'" alt=""><span class="logo-name">Gemini</span></div>
+      <div class="logo-pill"><img class="logo-img" src="https://www.google.com/s2/favicons?domain=x.ai&sz=64" onerror="this.style.display='none'" alt=""><span class="logo-name">Grok</span></div>
+      <div class="logo-pill"><img class="logo-img" src="https://www.google.com/s2/favicons?domain=perplexity.ai&sz=64" onerror="this.style.display='none'" alt=""><span class="logo-name">Perplexity</span></div>
+      <div class="logo-pill"><img class="logo-img" src="https://www.google.com/s2/favicons?domain=cursor.sh&sz=64" onerror="this.style.display='none'" alt=""><span class="logo-name">Cursor</span></div>
+      <div class="logo-pill"><img class="logo-img" src="https://www.google.com/s2/favicons?domain=n8n.io&sz=64" onerror="this.style.display='none'" alt=""><span class="logo-name">n8n</span></div>
+      <div class="logo-pill"><img class="logo-img" src="https://www.google.com/s2/favicons?domain=make.com&sz=64" onerror="this.style.display='none'" alt=""><span class="logo-name">Make</span></div>
+    </div>
+  </div>
+  <!-- Row 2 → left -->
+  <div class="logos-overflow" style="margin-top:16px">
+    <div class="logos-track marquee-left">
+      <div class="logo-pill"><img class="logo-img" src="https://www.google.com/s2/favicons?domain=midjourney.com&sz=64" onerror="this.style.display='none'" alt=""><span class="logo-name">Midjourney</span></div>
+      <div class="logo-pill"><img class="logo-img" src="https://www.google.com/s2/favicons?domain=klingai.com&sz=64" onerror="this.style.display='none'" alt=""><span class="logo-name">Kling</span></div>
+      <div class="logo-pill"><img class="logo-img" src="https://www.google.com/s2/favicons?domain=runwayml.com&sz=64" onerror="this.style.display='none'" alt=""><span class="logo-name">Runway</span></div>
+      <div class="logo-pill"><img class="logo-img" src="https://www.google.com/s2/favicons?domain=heygen.com&sz=64" onerror="this.style.display='none'" alt=""><span class="logo-name">HeyGen</span></div>
+      <div class="logo-pill"><img class="logo-img" src="https://www.google.com/s2/favicons?domain=elevenlabs.io&sz=64" onerror="this.style.display='none'" alt=""><span class="logo-name">ElevenLabs</span></div>
+      <div class="logo-pill"><img class="logo-img" src="https://www.google.com/s2/favicons?domain=gamma.app&sz=64" onerror="this.style.display='none'" alt=""><span class="logo-name">Gamma</span></div>
+      <div class="logo-pill"><img class="logo-img" src="https://www.google.com/s2/favicons?domain=notion.so&sz=64" onerror="this.style.display='none'" alt=""><span class="logo-name">Notion</span></div>
+      <!-- duplicate for seamless loop -->
+      <div class="logo-pill"><img class="logo-img" src="https://www.google.com/s2/favicons?domain=midjourney.com&sz=64" onerror="this.style.display='none'" alt=""><span class="logo-name">Midjourney</span></div>
+      <div class="logo-pill"><img class="logo-img" src="https://www.google.com/s2/favicons?domain=klingai.com&sz=64" onerror="this.style.display='none'" alt=""><span class="logo-name">Kling</span></div>
+      <div class="logo-pill"><img class="logo-img" src="https://www.google.com/s2/favicons?domain=runwayml.com&sz=64" onerror="this.style.display='none'" alt=""><span class="logo-name">Runway</span></div>
+      <div class="logo-pill"><img class="logo-img" src="https://www.google.com/s2/favicons?domain=heygen.com&sz=64" onerror="this.style.display='none'" alt=""><span class="logo-name">HeyGen</span></div>
+      <div class="logo-pill"><img class="logo-img" src="https://www.google.com/s2/favicons?domain=elevenlabs.io&sz=64" onerror="this.style.display='none'" alt=""><span class="logo-name">ElevenLabs</span></div>
+      <div class="logo-pill"><img class="logo-img" src="https://www.google.com/s2/favicons?domain=gamma.app&sz=64" onerror="this.style.display='none'" alt=""><span class="logo-name">Gamma</span></div>
+      <div class="logo-pill"><img class="logo-img" src="https://www.google.com/s2/favicons?domain=notion.so&sz=64" onerror="this.style.display='none'" alt=""><span class="logo-name">Notion</span></div>
+    </div>
   </div>
 </section>
 
 <!-- FOR WHOM -->
 <section class="forwhom" id="dlya-kogo">
-  <div class="section-inner">
-    <h2 class="section-heading fade-up">Вам сюда, если...</h2>
+  <div class="section-inner forwhom-inner">
+    <div style="text-align:center;margin-bottom:40px">
+      <h2 class="section-heading fade-up" style="text-align:center">С какими запросами я чаще всего работаю</h2>
+      <p class="fade-up stats-sub" style="margin-top:4px">Помогаю людям и бизнесу использовать AI для заработка, автоматизации и профессионального роста.</p>
+    </div>
     <div class="grid-2x2">
-      <div class="card fade-up">
+      <div class="card card--green fade-up">
         <div class="card-icon">🎯</div>
-        <h3>Хотите освоить нейросети с нуля</h3>
-        <p>Объясню просто, с нуля, без технических терминов. Начнём с того, что нужно именно вам.</p>
+        <h3>Освоить нейросети с нуля</h3>
+        <p>Объясню простым языком без сложных терминов. Покажу, какие инструменты нужны именно вам и с чего начать.</p>
       </div>
-      <div class="card fade-up" style="transition-delay:0.1s">
+      <div class="card card--orange fade-up" style="transition-delay:0.1s">
         <div class="card-icon">💼</div>
-        <h3>Ведёте бизнес и хотите внедрить AI</h3>
-        <p>Найдём точки автоматизации под ваши задачи. Сэкономим время и деньги.</p>
+        <h3>Внедрить AI в бизнес</h3>
+        <p>Найдём процессы для автоматизации и внедрим инструменты, которые экономят время и деньги.</p>
       </div>
-      <div class="card fade-up" style="transition-delay:0.2s">
+      <div class="card card--blue fade-up" style="transition-delay:0.2s">
         <div class="card-icon">📈</div>
-        <h3>Чувствуете что теряете актуальность</h3>
-        <p>Освоим инструменты которые усилят вас на рынке. Будете впереди конкурентов.</p>
+        <h3>Не отставать от изменений рынка</h3>
+        <p>Разберёмся, какие AI-навыки действительно востребованы и как использовать их в своей профессии.</p>
       </div>
-      <div class="card fade-up" style="transition-delay:0.3s">
+      <div class="card card--purple card--featured fade-up" style="transition-delay:0.3s">
+        <span class="card-badge">Самый популярный запрос</span>
         <div class="card-icon">💻</div>
-        <h3>Хотите зарабатывать на AI удалённо</h3>
-        <p>Три профессии с нуля до первого заказа. Работает из любой точки мира.</p>
+        <h3>Начать зарабатывать с помощью AI</h3>
+        <p>Покажу реальные направления, инструменты и первые шаги до первых клиентов или заказов.</p>
       </div>
+    </div>
+    <div class="forwhom-footer fade-up">
+      <p class="forwhom-caption">Не нашли свой запрос? Разберём вашу ситуацию на консультации.</p>
+      <a href="https://t.me/vasilina_pavlovich7" target="_blank" class="forwhom-btn">Записаться на консультацию</a>
+      <p class="forwhom-trust">Бесплатно • 20 минут • разбор вашей ситуации</p>
     </div>
   </div>
 </section>
