@@ -146,8 +146,40 @@ body{font-family:'Manrope',sans-serif;font-size:16px;line-height:1.7;color:var(-
 .forwhom-btn:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(234,88,12,0.42);background:linear-gradient(135deg,#c2410c,#ea580c);color:#fff}
 .forwhom-trust{margin-top:10px;font-size:13px;color:var(--text-secondary);letter-spacing:0.02em}
 
-/* SERVICES */
-.services{padding:80px 0;background:var(--white)}
+/* TWO DOORS */
+.doors-section{padding:72px 0;background:var(--bg);border-bottom:1px solid var(--border)}
+.doors-inner{max-width:880px}
+.doors-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.door-card{background:var(--bg-card);border:1px solid var(--border);border-radius:20px;padding:32px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:16px;transition:all 0.3s ease}
+.door-card--green{border-top:3px solid var(--green-main)}
+.door-card--orange{border-top:3px solid #ea580c}
+.door-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-hover)}
+.door-icon{font-size:36px;line-height:1}
+.door-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--text-primary)}
+.door-desc{color:var(--text-secondary);font-size:15px;line-height:1.6;flex:1}
+.door-tags{display:flex;flex-wrap:wrap;gap:8px}
+.door-tag{display:inline-flex;padding:4px 12px;border-radius:var(--radius-pill);font-size:12px;font-weight:600}
+.door-card--green .door-tag{background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.25);color:var(--green-dark)}
+.door-card--orange .door-tag{background:rgba(249,115,22,0.08);border:1px solid rgba(249,115,22,0.25);color:#c2410c}
+.btn-green-solid{background:var(--green-main);color:#fff;align-self:flex-start}
+.btn-green-solid:hover{background:var(--green-dark);transform:scale(1.03);box-shadow:0 4px 16px rgba(34,197,94,0.35);color:#fff}
+.btn-orange-solid{background:linear-gradient(135deg,#ea580c,#f97316);color:#fff;align-self:flex-start}
+.btn-orange-solid:hover{background:linear-gradient(135deg,#c2410c,#ea580c);transform:scale(1.03);box-shadow:0 4px 16px rgba(234,88,12,0.35);color:#fff}
+
+/* SERVICES ZONES */
+.services{padding:0;background:var(--white)}
+.services-zone{padding:0}
+.zone--obuchenie{background:rgba(34,197,94,0.025)}
+.zone--biznes{background:rgba(249,115,22,0.025)}
+.zone-header-wrap{padding-top:64px;padding-bottom:40px}
+.zone-intro{color:var(--text-secondary);font-size:17px;max-width:600px;margin-top:8px}
+.zone-label--green{background:rgba(34,197,94,0.10);color:var(--green-dark);border:1px solid rgba(34,197,94,0.3)}
+.zone-label--orange{background:rgba(249,115,22,0.08);color:#c2410c;border:1px solid rgba(249,115,22,0.3)}
+a.card{display:block;color:inherit;text-decoration:none}
+a.card:hover{color:inherit}
+
+/* SERVICES (existing rules) */
+.services-orig{padding:80px 0;background:var(--white)}
 .section-label{display:inline-flex;align-items:center;background:var(--green-light);color:var(--green-dark);padding:5px 14px;border-radius:var(--radius-pill);font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:16px}
 .accordion{border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin:24px 0}
 .acc-header{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;cursor:pointer;font-weight:600;font-size:16px;background:#fff;transition:background 0.2s;user-select:none}
@@ -271,6 +303,8 @@ footer{position:relative;overflow:hidden;background-image:url('assets/image-2.pn
   .footer-inner{grid-template-columns:1fr;gap:40px;padding:0 24px 48px}
   .footer-bottom{padding:16px 24px 32px}
   .footer-deco-img{width:80%;opacity:0.55}
+  .doors-grid{grid-template-columns:1fr}
+  .zone-header-wrap{padding-top:48px;padding-bottom:24px}
 }
 
 /* ---- STAT COUNTER CONFETTI ---- */
