@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Материалы по AI - Уроки, гайды и инструменты | Василина Павлович</title>
+<meta name="description" content="Бесплатные материалы по нейросетям: уроки по ChatGPT, гайды по AI-инструментам, как создать AI-агента, Telegram-бота и сайт без программирования.">
+<meta property="og:title" content="Материалы по AI - Василина Павлович">
+<meta property="og:description" content="Бесплатные уроки и гайды по нейросетям. ChatGPT, AI-агенты, Telegram-боты, сайты без кода и AI для бизнеса.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400;1,700&family=Manrope:wght@400;500;600&family=Syne:wght@700;800&family=Lora:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.mat-hero {
+  padding: 80px 24px 56px;
+  text-align: center;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+.mat-hero h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -1px;
+  margin: 0 0 14px;
+}
+.mat-hero p {
+  font-size: 17px;
+  color: var(--text-secondary);
+  font-weight: 400;
+  max-width: 480px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+.mat-section {
+  padding: 56px 24px 80px;
+  background: var(--bg);
+}
+.mat-content {
+  max-width: 620px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.mat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px 28px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-decoration: none;
+  color: inherit;
+  transition: box-shadow 0.22s ease, transform 0.22s ease, border-color 0.22s ease;
+  border-top: 3px solid var(--green-main);
+}
+.mat-card:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-3px);
+  border-color: var(--green-main);
+}
+.mat-card-icon {
+  font-size: 36px;
+  line-height: 1;
+}
+.mat-card-tag {
+  display: inline-flex;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--green-main);
+  background: var(--green-light);
+  border-radius: 6px;
+  padding: 3px 8px;
+  width: fit-content;
+}
+.mat-card-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.35;
+}
+.mat-card-desc {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin: 0;
+}
+.mat-card-btn {
+  margin-top: 6px;
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 20px;
+  background: var(--green-main);
+  color: #fff;
+  border-radius: var(--radius-pill);
+  font-size: 14px;
+  font-weight: 600;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.mat-card:hover .mat-card-btn {
+  background: var(--green-dark);
+  transform: translateX(2px);
+}
+.mat-soon {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  box-shadow: var(--shadow);
+}
+.mat-soon-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin: 0 0 18px;
+}
+.mat-soon-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+.mat-soon-list li {
+  font-size: 15px;
+  color: var(--text-secondary);
+  opacity: 0.6;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+@media (max-width: 600px) {
+  .mat-hero { padding: 60px 16px 40px; }
+  .mat-section { padding: 40px 16px 60px; }
+  .mat-card { padding: 24px 20px; }
+  .mat-card-title { font-size: 18px; }
+  .mat-soon { padding: 20px; }
+}
+</style>
+</head>
+<body>
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="https://www.instagram.com/vasilina_pavlovich" target="_blank" class="nav-logo">
+      <img src="assets/image-1.jpg" style="width:34px;height:34px;border-radius:50%;object-fit:cover;object-position:center 10%;border:2px solid var(--green-main);flex-shrink:0" alt="Василина">
+      <span class="nav-logo-text">Василина Павлович</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Главная</a>
+      <a href="index.html#about">Обо мне</a>
+      <a href="index.html#uslugi">Услуги</a>
+      <a href="index.html#results">Кейсы</a>
+      <a href="materials.html" class="active">Материалы</a>
+      <a href="index.html#faq">FAQ</a>
+    </div>
+    <div class="nav-right">
+      <button class="hamburger" onclick="toggleMenu()" aria-label="Меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="closeMenu()">Главная</a>
+  <a href="index.html#about" onclick="closeMenu()">Обо мне</a>
+  <a href="index.html#uslugi" onclick="closeMenu()">Услуги</a>
+  <a href="index.html#results" onclick="closeMenu()">Кейсы</a>
+  <a href="materials.html" onclick="closeMenu()">Материалы</a>
+  <a href="index.html#faq" onclick="closeMenu()">FAQ</a>
+  <a href="https://t.me/vasilina_pavlovich7" target="_blank" class="btn-pill btn-blue" style="margin-top:4px;justify-content:center">Написать в Telegram</a>
+</div>
+
+<!-- HERO -->
+<div class="mat-hero">
+  <h1>Полезные материалы</h1>
+  <p>Бесплатные уроки и подборки по AI - всё в одном месте</p>
+</div>
+
+<!-- MATERIALS -->
+<section class="mat-section">
+  <div class="mat-content">
+
+    <!-- Бесплатный урок -->
+    <a href="#" class="mat-card">
+      <span class="mat-card-icon">🎓</span>
+      <span class="mat-card-tag">Бесплатно</span>
+      <h3 class="mat-card-title">AI-профессии: 5 способов заработать с помощью нейросетей в 2026 году</h3>
+      <p class="mat-card-desc">Узнай, какие AI-навыки сейчас востребованы, какие услуги покупают клиенты и какие направления могут стать новой профессией.</p>
+      <span class="mat-card-btn">Смотреть бесплатно →</span>
+    </a>
+
+    <!-- Скоро появится -->
+    <div class="mat-soon">
+      <h4 class="mat-soon-title">Скоро появится</h4>
+      <ul class="mat-soon-list">
+        <li>📘 Гайд по ChatGPT для новичков</li>
+        <li>🗂️ Каталог AI-инструментов со ссылками</li>
+        <li>🤖 Как создать AI-агента</li>
+        <li>💬 Как создать Telegram-бота</li>
+        <li>🌐 Как создать сайт без программирования</li>
+        <li>🌴 Как найти удалённую работу с помощью AI</li>
+        <li>🏢 AI для бизнеса: с чего начать</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-overlay"></div>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">
+        <img src="assets/image-3.jpg" style="width:40px;height:40px;border-radius:50%;object-fit:cover;object-position:center 10%;border:2px solid var(--green-main)" alt="Василина">
+        <span class="footer-logo-text">Василина Павлович</span>
+      </div>
+      <div class="footer-socials">
+        <a href="https://instagram.com/vasilina_pavlovich" target="_blank" class="footer-social-link">
+          <span class="footer-soc-badge footer-soc-badge--instagram">
+            <svg class="footer-soc-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/></svg>
+          </span>
+          <span class="footer-soc-handle">@vasilina_pavlovich</span>
+        </a>
+        <a href="https://t.me/vasilina_pavlovich7" target="_blank" class="footer-social-link">
+          <span class="footer-soc-badge footer-soc-badge--telegram">
+            <svg class="footer-soc-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4 20-7z"/><path d="M22 2 11 13"/></svg>
+          </span>
+          <span class="footer-soc-handle">@vasilina_pavlovich7</span>
+        </a>
+        <a href="https://t.me/deviichnik_ai" target="_blank" class="footer-social-link">
+          <span class="footer-soc-badge footer-soc-badge--telegram">
+            <svg class="footer-soc-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4 20-7z"/><path d="M22 2 11 13"/></svg>
+          </span>
+          <span class="footer-soc-handle">@deviichnik_ai</span>
+        </a>
+        <a href="https://www.youtube.com/@ВасилинаПавлович7" target="_blank" class="footer-social-link">
+          <span class="footer-soc-badge footer-soc-badge--youtube">
+            <svg class="footer-soc-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg>
+          </span>
+          <span class="footer-soc-handle">@ВасилинаПавлович7</span>
+        </a>
+      </div>
+      <a href="https://t.me/vasilina_pavlovich7" target="_blank" class="btn-footer-cta">Связаться →</a>
+    </div>
+    <div class="footer-links-col">
+      <h4>Навигация</h4>
+      <a href="index.html#about">Обо мне</a>
+      <a href="index.html#uslugi">Услуги</a>
+      <a href="index.html#results">Кейсы</a>
+      <a href="materials.html">Материалы</a>
+      <a href="index.html#faq">FAQ</a>
+    </div>
+    <div class="footer-links-col">
+      <h4>Услуги</h4>
+      <a href="index.html#obuchenie">Обучение нейросетям</a>
+      <a href="index.html#biznes">AI для бизнеса</a>
+      <a href="index.html#kurs">Курс AI-Фриланс</a>
+    </div>
+  </div>
+  <div class="footer-bottom">Спасибо GPT и Claude за помощь в создании этого сайта 💚 · © 2026 Василина Павлович · @vasilina_pavlovich7</div>
+</footer>
+
+<script>
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open')}
+function closeMenu(){document.getElementById('mobileMenu').classList.remove('open')}
+</script>
+</body>
+</html>

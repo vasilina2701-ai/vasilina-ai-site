@@ -1,10 +1,23 @@
+// ---- LINK CONFIG (замени значения, когда бот будет готов) ----
+const LINKS = {
+  consult:    'https://t.me/vasilina_pavlovich7',
+  individual: 'https://t.me/vasilina_pavlovich7',
+  course:     'https://t.me/vasilina_pavlovich7',
+  business:   'https://t.me/vasilina_pavlovich7',
+  guide:      'https://t.me/vasilina_pavlovich7'
+};
+document.querySelectorAll('[data-cta]').forEach(el=>{
+  const key=el.dataset.cta;
+  if(LINKS[key])el.href=LINKS[key];
+});
+
 function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open')}
 function closeMenu(){document.getElementById('mobileMenu').classList.remove('open')}
 function toggleAcc(h){const b=h.nextElementSibling;const c=h.querySelector('.acc-chevron');const open=b.style.maxHeight&&b.style.maxHeight!=='0px';b.style.maxHeight=open?'0px':(b.scrollHeight+'px');c.classList.toggle('open',!open)}
 function toggleFaq(q){const a=q.nextElementSibling;const c=q.querySelector('.faq-chevron');const open=a.style.maxHeight&&a.style.maxHeight!=='0px';a.style.maxHeight=open?'0px':(a.scrollHeight+'px');c.classList.toggle('open',!open)}
 
 // Intersection Observer
-const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:0.12});
+const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:0.05,rootMargin:'0px 0px 0px 0px'});
 document.querySelectorAll('.fade-up,.chat-card').forEach(el=>io.observe(el));
 
 // Hero pills stagger
@@ -99,6 +112,145 @@ function scrollReviews(dir) {
       track.scrollBy({ left: 460, behavior: 'smooth' });
     }
   }, 3200);
+})();
+
+// ---- SKILLS SLIDER (INFINITE) ----
+(function(){
+  const track = document.getElementById('skillsTrack');
+  const overflow = document.getElementById('skillsOverflow');
+  const dotsEl = document.getElementById('skillsDots');
+  const prevBtn = document.getElementById('skillsPrev');
+  const nextBtn = document.getElementById('skillsNext');
+  if (!track || !overflow) return;
+
+  const gap = 20;
+  let perPage = 2;
+  let iPage = 1; // internal page, 1 = first real page (after pre-buffer)
+  let busy = false;
+
+  function origCards() {
+    return [...track.querySelectorAll('.skills-card:not(.skills-card-clone)')];
+  }
+
+  function logPages() {
+    return Math.ceil(origCards().length / perPage);
+  }
+
+  function cardW() {
+    if (perPage === 1) return overflow.offsetWidth;
+    return (overflow.offsetWidth - gap * (perPage - 1)) / perPage;
+  }
+
+  function buildClones() {
+    track.querySelectorAll('.skills-card-clone').forEach(c => c.remove());
+    const orig = origCards();
+    const lp = logPages();
+    // post-buffer: clone first perPage original cards, append at end
+    orig.slice(0, perPage).forEach(c => {
+      const cl = c.cloneNode(true);
+      cl.classList.add('skills-card-clone');
+      track.appendChild(cl);
+    });
+    // pre-buffer: clone last page original cards, insert before first original (reversed for correct order)
+    const lastStart = (lp - 1) * perPage;
+    [...orig.slice(lastStart)].reverse().forEach(c => {
+      const cl = c.cloneNode(true);
+      cl.classList.add('skills-card-clone');
+      track.insertBefore(cl, orig[0]);
+    });
+  }
+
+  function setWidths() {
+    const w = cardW();
+    track.querySelectorAll('.skills-card').forEach(c => c.style.width = w + 'px');
+  }
+
+  function calcOffset(p) {
+    return p * perPage * (cardW() + gap);
+  }
+
+  function moveTo(p, animate) {
+    track.style.transition = animate
+      ? 'transform 0.45s cubic-bezier(0.25,0.46,0.45,0.94)'
+      : 'none';
+    track.style.transform = 'translateX(-' + calcOffset(p) + 'px)';
+  }
+
+  function activeDot() {
+    return (iPage - 1 + logPages()) % logPages();
+  }
+
+  function renderDots() {
+    const lp = logPages();
+    const active = activeDot();
+    dotsEl.innerHTML = '';
+    for (let i = 0; i < lp; i++) {
+      const d = document.createElement('button');
+      d.className = 'skills-dot' + (i === active ? ' active' : '');
+      d.setAttribute('aria-label', 'Страница ' + (i + 1));
+      d.addEventListener('click', () => {
+        if (busy) return;
+        iPage = i + 1;
+        moveTo(iPage, true);
+        renderDots();
+      });
+      dotsEl.appendChild(d);
+    }
+    // arrows always enabled (infinite)
+    prevBtn.disabled = false;
+    nextBtn.disabled = false;
+  }
+
+  function next() {
+    if (busy) return;
+    busy = true;
+    iPage++;
+    moveTo(iPage, true);
+    renderDots();
+  }
+
+  function prev() {
+    if (busy) return;
+    busy = true;
+    iPage--;
+    moveTo(iPage, true);
+    renderDots();
+  }
+
+  track.addEventListener('transitionend', e => {
+    if (e.propertyName !== 'transform') return;
+    const lp = logPages();
+    if (iPage >= lp + 1) {
+      iPage = 1;
+      moveTo(iPage, false);
+      renderDots();
+    } else if (iPage <= 0) {
+      iPage = lp;
+      moveTo(iPage, false);
+      renderDots();
+    }
+    busy = false;
+  });
+
+  function init() {
+    perPage = window.innerWidth >= 768 ? 3 : 1;
+    buildClones();
+    setWidths();
+    iPage = 1;
+    moveTo(iPage, false);
+    renderDots();
+  }
+
+  prevBtn.addEventListener('click', prev);
+  nextBtn.addEventListener('click', next);
+
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(init, 120);
+  });
+
+  init();
 })();
 
 // ---- SIMULTANEOUS COUNTERS ----
