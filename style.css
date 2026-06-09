@@ -31,10 +31,10 @@ body{font-family:'Manrope',sans-serif;font-size:16px;line-height:1.7;color:var(-
 .nav-links a:hover{color:#fff;background:rgba(255,255,255,0.12)}
 .nav-right{display:flex;align-items:center;gap:10px;flex-shrink:0}
 .btn-pill{display:inline-flex;align-items:center;padding:10px 20px;border-radius:var(--radius-pill);font-family:'Manrope',sans-serif;font-size:14px;font-weight:600;text-decoration:none;transition:all 0.3s ease;cursor:pointer;border:none}
-.btn-blue{background:var(--blue-btn);color:#fff}
-.btn-blue:hover{background:var(--blue-hover);transform:scale(1.03);box-shadow:0 4px 16px rgba(37,99,235,0.35)}
-.btn-outline{background:transparent;color:var(--blue-btn);border:1.5px solid var(--blue-btn)}
-.btn-outline:hover{background:rgba(37,99,235,0.06);transform:scale(1.03)}
+.btn-blue{background:linear-gradient(135deg,#ea580c,#f97316);color:#fff}
+.btn-blue:hover{background:linear-gradient(135deg,#c2410c,#ea580c);transform:scale(1.03);box-shadow:0 4px 16px rgba(234,88,12,0.35)}
+.btn-outline{background:transparent;color:#ea580c;border:1.5px solid #ea580c}
+.btn-outline:hover{background:rgba(234,88,12,0.06);transform:scale(1.03)}
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
 .hamburger span{width:22px;height:2px;background:var(--text-primary);border-radius:2px;transition:all 0.3s}
 .mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:#fff;border-bottom:1px solid var(--border);padding:20px 24px;z-index:99;flex-direction:column;gap:16px}
@@ -181,21 +181,23 @@ a.door-card{text-decoration:none;color:inherit}
 .btn-orange-solid{background:linear-gradient(135deg,#ea580c,#f97316);color:#fff;align-self:flex-start}
 .btn-orange-solid:hover{background:linear-gradient(135deg,#c2410c,#ea580c);transform:scale(1.03);box-shadow:0 4px 16px rgba(234,88,12,0.35);color:#fff}
 
-/* SOCIAL PROOF MARQUEE */
+/* SOCIAL PROOF CAROUSEL */
 .social-proof{padding:44px 0 36px;background:var(--white);border-bottom:1px solid var(--border)}
 .sp-header{text-align:center;margin-bottom:28px}
 .sp-sub{color:var(--text-secondary);font-size:15px;max-width:500px;margin:8px auto 0;line-height:1.65}
-.sp-overflow{overflow:hidden}
-.sp-track{display:flex;gap:14px;width:max-content;align-items:stretch;animation:marquee-right 32s linear infinite}
-.sp-overflow:hover .sp-track{animation-play-state:paused}
-.sp-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:28px 30px;box-shadow:var(--shadow);width:360px;flex-shrink:0;display:flex;flex-direction:column;gap:13px}
+.sp-carousel-wrap{display:flex;align-items:center;gap:16px;max-width:1100px;margin:0 auto;padding:0 40px}
+.sp-overflow{overflow:hidden;flex:1}
+.sp-track{display:flex;gap:20px;transition:transform 0.45s cubic-bezier(0.25,0.46,0.45,0.94)}
+.sp-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:32px 36px;box-shadow:var(--shadow);flex-shrink:0;display:flex;flex-direction:column;gap:14px;min-height:230px}
 .sp-card-top{display:flex;align-items:center;gap:10px}
 .sp-photo{width:48px;height:48px;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid var(--border)}
 .sp-name{font-weight:700;font-size:13px;color:var(--text-primary);line-height:1.2}
 .sp-role{font-size:11px;color:var(--text-secondary);margin-top:1px}
-.sp-quote{font-style:italic;font-size:12px;color:var(--text-primary);line-height:1.5;margin:0;font-family:'Lora',serif}
-.sp-result{font-size:12px;font-weight:600;color:var(--green-dark);margin:0;padding-top:4px;border-top:1px solid var(--border)}
-.sp-footer{text-align:center;color:var(--text-secondary);font-size:13px;margin-top:20px;font-weight:500}
+.sp-quote{font-style:italic;font-size:13px;color:var(--text-primary);line-height:1.55;margin:0;font-family:'Lora',serif;flex:1}
+.sp-result{font-size:13px;font-weight:600;color:var(--green-dark);margin:0;padding-top:8px;border-top:1px solid var(--border)}
+.sp-arrow{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--border);background:#fff;cursor:pointer;font-size:18px;color:var(--text-primary);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.2s ease;box-shadow:var(--shadow)}
+.sp-arrow:hover{background:var(--green-main);color:#fff;border-color:var(--green-main)}
+.sp-footer{text-align:center;color:var(--text-secondary);font-size:13px;margin-top:24px;font-weight:500}
 
 /* SERVICES 3-CARD LAYOUT */
 .services{padding:44px 0 56px;background:var(--bg)}
@@ -343,12 +345,12 @@ footer{position:relative;overflow:hidden;background-image:url('assets/image-2.pn
 .skills-sub{color:var(--text-secondary);font-size:16px;max-width:540px;margin:8px auto 0;line-height:1.65}
 .skills-slider-wrap{position:relative;display:flex;align-items:center;gap:16px;max-width:1100px;margin:0 auto;padding:0 40px}
 .skills-overflow{overflow:hidden;flex:1}
-.skills-track{display:flex;gap:20px;transition:transform 0.45s cubic-bezier(0.25,0.46,0.45,0.94)}
-.skills-card{flex-shrink:0;background:#fff;border:1px solid var(--border);border-radius:20px;padding:32px;box-shadow:var(--shadow)}
+.skills-track{display:flex;gap:20px;transition:transform 0.45s cubic-bezier(0.25,0.46,0.45,0.94);align-items:stretch}
+.skills-card{flex-shrink:0;background:#fff;border:1px solid var(--border);border-radius:20px;padding:32px;box-shadow:var(--shadow);display:flex;flex-direction:column}
 .skills-card-num{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--green-main);letter-spacing:0.08em;display:block;margin-bottom:16px;opacity:0.7}
 .skills-card-emoji{font-size:32px;margin-bottom:14px;display:block}
-.skills-card-title{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;color:var(--text-primary);margin:0 0 10px;letter-spacing:-0.2px}
-.skills-card-desc{font-size:15px;color:var(--text-secondary);line-height:1.65;margin:0}
+.skills-card-title{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;color:var(--text-primary);margin:0 0 10px;letter-spacing:-0.2px;line-height:1.3;min-height:52px}
+.skills-card-desc{font-size:15px;color:var(--text-secondary);line-height:1.65;margin:0;flex:1}
 .skills-arrow{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--border);background:#fff;cursor:pointer;font-size:18px;color:var(--text-primary);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.2s ease;box-shadow:var(--shadow)}
 .skills-arrow:hover:not(:disabled){background:var(--green-main);color:#fff;border-color:var(--green-main)}
 .skills-arrow:disabled{opacity:0.3;cursor:default}
@@ -395,6 +397,7 @@ footer{position:relative;overflow:hidden;background-image:url('assets/image-2.pn
   .zone-header-wrap{padding-top:48px;padding-bottom:24px}
   .skills-slider-wrap{padding:0 12px;gap:8px}
   .skills-card{padding:24px}
+  .sp-carousel-wrap{padding:0 12px;gap:8px}
 }
 
 /* ---- STAT COUNTER CONFETTI ---- */
@@ -416,8 +419,6 @@ footer{position:relative;overflow:hidden;background-image:url('assets/image-2.pn
 @keyframes marquee-left{from{transform:translateX(-50%)}to{transform:translateX(0)}}
 .marquee-right{animation:marquee-right 54s linear infinite}
 .marquee-left{animation:marquee-left 54s linear infinite}
-.logos-overflow:hover .marquee-right,
-.logos-overflow:hover .marquee-left{animation-play-state:paused}
 
 /* ---- PREMIUM REVIEW CARDS ---- */
 .cases-premium{padding:80px 0;background:linear-gradient(135deg,#fdf6f0 0%,#f8fafc 50%,#f0fdf4 100%)}

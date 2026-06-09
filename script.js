@@ -253,6 +253,114 @@ function scrollReviews(dir) {
   init();
 })();
 
+// ---- SOCIAL PROOF CAROUSEL ----
+(function(){
+  const track = document.getElementById('spTrack');
+  const overflow = document.getElementById('spOverflow');
+  const prevBtn = document.getElementById('spPrev');
+  const nextBtn = document.getElementById('spNext');
+  if (!track || !overflow) return;
+
+  const gap = 20;
+  let perPage = 2;
+  let iPage = 1;
+  let busy = false;
+
+  function origCards() {
+    return [...track.querySelectorAll('.sp-card:not(.sp-card-clone)')];
+  }
+
+  function logPages() {
+    return Math.ceil(origCards().length / perPage);
+  }
+
+  function cardW() {
+    if (perPage === 1) return overflow.offsetWidth;
+    return (overflow.offsetWidth - gap * (perPage - 1)) / perPage;
+  }
+
+  function buildClones() {
+    track.querySelectorAll('.sp-card-clone').forEach(c => c.remove());
+    const orig = origCards();
+    const lp = logPages();
+    orig.slice(0, perPage).forEach(c => {
+      const cl = c.cloneNode(true);
+      cl.classList.add('sp-card-clone');
+      track.appendChild(cl);
+    });
+    const lastStart = (lp - 1) * perPage;
+    [...orig.slice(lastStart)].reverse().forEach(c => {
+      const cl = c.cloneNode(true);
+      cl.classList.add('sp-card-clone');
+      track.insertBefore(cl, orig[0]);
+    });
+  }
+
+  function setWidths() {
+    const w = cardW();
+    track.querySelectorAll('.sp-card').forEach(c => c.style.width = w + 'px');
+  }
+
+  function calcOffset(p) {
+    return p * perPage * (cardW() + gap);
+  }
+
+  function moveTo(p, animate) {
+    track.style.transition = animate
+      ? 'transform 0.45s cubic-bezier(0.25,0.46,0.45,0.94)'
+      : 'none';
+    track.style.transform = 'translateX(-' + calcOffset(p) + 'px)';
+  }
+
+  track.addEventListener('transitionend', e => {
+    if (e.propertyName !== 'transform') return;
+    const lp = logPages();
+    if (iPage >= lp + 1) { iPage = 1; moveTo(iPage, false); }
+    else if (iPage <= 0) { iPage = lp; moveTo(iPage, false); }
+    busy = false;
+  });
+
+  function next() {
+    if (busy) return;
+    busy = true;
+    iPage++;
+    moveTo(iPage, true);
+  }
+
+  function prev() {
+    if (busy) return;
+    busy = true;
+    iPage--;
+    moveTo(iPage, true);
+  }
+
+  let touchStartX = 0;
+  overflow.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+  overflow.addEventListener('touchend', e => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) diff > 0 ? next() : prev();
+  }, { passive: true });
+
+  prevBtn.addEventListener('click', prev);
+  nextBtn.addEventListener('click', next);
+
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(init, 120);
+  });
+
+  function init() {
+    perPage = window.innerWidth >= 768 ? 2 : 1;
+    buildClones();
+    setWidths();
+    iPage = 1;
+    moveTo(iPage, false);
+  }
+
+  init();
+})();
+
 // ---- SIMULTANEOUS COUNTERS ----
 (function(){
   const counters = document.querySelectorAll('.counter');
