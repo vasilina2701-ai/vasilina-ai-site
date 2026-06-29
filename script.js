@@ -233,7 +233,7 @@ function scrollReviews(dir) {
   });
 
   function init() {
-    perPage = window.innerWidth >= 768 ? 3 : 1;
+    perPage = window.innerWidth >= 1100 ? 4 : window.innerWidth >= 768 ? 2 : 1;
     buildClones();
     setWidths();
     iPage = 1;
@@ -351,7 +351,7 @@ function scrollReviews(dir) {
   });
 
   function init() {
-    perPage = window.innerWidth >= 768 ? 2 : 1;
+    perPage = window.innerWidth >= 900 ? 3 : window.innerWidth >= 600 ? 2 : 1;
     buildClones();
     setWidths();
     iPage = 1;
