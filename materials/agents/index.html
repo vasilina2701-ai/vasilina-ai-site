@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI-агенты — Материалы | Василина Павлович</title>
+<meta name="description" content="Гайды и статьи об AI-агентах: что это такое, как создать и какие задачи они выполняют без участия человека.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400;1,700&family=Manrope:wght@400;500;600&family=Syne:wght@700;800&family=Lora:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../style.css">
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();
+   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+   ym(109718069, "init", { clickmap:true, trackLinks:true, accurateTrackBounce:true });
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/109718069" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+<style>
+/* ---- PAGE LAYOUT ---- */
+.lib-page { background: var(--bg); min-height: 100vh; }
+
+/* Breadcrumbs */
+.lib-topbar {
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  padding-top: 64px;
+}
+.lib-inner { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+.lib-breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 16px 0;
+  font-size: 13px;
+  color: var(--text-secondary);
+  flex-wrap: wrap;
+}
+.lib-breadcrumbs a { color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
+.lib-breadcrumbs a:hover { color: var(--green-dark); }
+.lib-breadcrumbs-sep { opacity: 0.35; }
+.lib-breadcrumbs-current { color: var(--text-primary); font-weight: 500; }
+
+/* Hero */
+.lib-hero { padding: 32px 0 40px; }
+.lib-hero-eyebrow { font-size: 40px; display: block; margin-bottom: 12px; }
+.lib-hero h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.5px;
+  margin: 0 0 10px;
+}
+.lib-hero-desc { font-size: 16px; color: var(--text-secondary); line-height: 1.65; margin: 0; max-width: 520px; }
+.lib-hero-meta { display: flex; align-items: center; gap: 16px; margin-top: 16px; flex-wrap: wrap; }
+.lib-hero-meta-item { font-size: 13px; color: var(--text-secondary); display: flex; align-items: center; gap: 5px; }
+
+/* Section */
+.lib-section { padding: 40px 0 96px; }
+.lib-section-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--text-secondary); margin-bottom: 20px; display: block;
+}
+
+/* ---- CARD GRID ---- */
+.lib-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* Card base */
+.lib-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+  text-decoration: none;
+  color: inherit;
+}
+a.lib-card:hover {
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+  transform: translateY(-4px);
+}
+div.lib-card { cursor: default; }
+
+/* Cover — text-based guide preview */
+.lib-cover {
+  height: 162px;
+  padding: 16px 18px 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+/* Grid pattern */
+.lib-cover::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+  z-index: 0;
+}
+/* Decorative circle — bottom-right */
+.lib-cover::before {
+  content: '';
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  border: 32px solid rgba(255,255,255,0.055);
+  bottom: -62px;
+  right: -44px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Badge — type label */
+.lib-cover-badge {
+  display: inline-flex;
+  align-self: flex-start;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 4px;
+  padding: 3px 8px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Cover text */
+.lib-cover-text { position: relative; z-index: 1; }
+.lib-cover-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.2;
+  margin: 0 0 5px;
+  letter-spacing: -0.2px;
+}
+.lib-cover-sub {
+  font-size: 11px;
+  color: rgba(255,255,255,0.38);
+  margin: 0;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* Cover backgrounds — dark tinted */
+.lib-cover--agents  { background: linear-gradient(145deg, #0d1b2e 0%, #102242 60%, #152b58 100%); }
+.lib-cover--build   { background: linear-gradient(145deg, #0a1a0c 0%, #0e2112 60%, #122816 100%); }
+.lib-cover--soul    { background: linear-gradient(145deg, #140a28 0%, #1c1136 60%, #231444 100%); }
+.lib-cover--memory  { background: linear-gradient(145deg, #091520 0%, #0d1c2c 60%, #102338 100%); }
+.lib-cover--tools   { background: linear-gradient(145deg, #1d0e05 0%, #271408 60%, #301a0a 100%); }
+.lib-cover--content { background: linear-gradient(145deg, #17090f 0%, #200d16 60%, #280f1e 100%); }
+
+/* Soon card — muted */
+div.lib-card .lib-cover { filter: brightness(0.45) saturate(0.12); }
+
+/* Card body */
+.lib-card-body {
+  padding: 18px 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+/* Meta row */
+.lib-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.lib-tag {
+  display: inline-flex;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;
+  border-radius: 5px; padding: 2px 7px;
+}
+.lib-tag--free   { color: var(--green-dark); background: var(--green-light); }
+.lib-tag--level  { color: #7c3aed; background: rgba(124,58,237,0.08); border: 1px solid rgba(124,58,237,0.15); }
+.lib-tag--soon   { color: #64748b; background: #f1f5f9; border: 1px solid #e2e8f0; }
+.lib-card-time   { font-size: 11px; color: var(--text-secondary); margin-left: auto; white-space: nowrap; }
+
+/* Title & desc */
+.lib-card-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 16px; font-weight: 700;
+  color: var(--text-primary); margin: 2px 0 0; line-height: 1.35;
+}
+div.lib-card .lib-card-title { color: var(--text-secondary); }
+.lib-card-desc {
+  font-size: 13px; color: var(--text-secondary);
+  line-height: 1.6; margin: 0; flex: 1;
+}
+
+/* CTA */
+.lib-card-cta {
+  margin-top: 10px;
+  align-self: flex-start;
+  display: inline-flex; align-items: center;
+  padding: 8px 16px;
+  background: var(--green-main); color: #fff;
+  border-radius: var(--radius-pill);
+  font-size: 12px; font-weight: 600;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+a.lib-card:hover .lib-card-cta { background: var(--green-dark); }
+
+/* Soon pill in body */
+.lib-soon-pill {
+  margin-top: 10px;
+  align-self: flex-start;
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 6px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  font-size: 11px; font-weight: 600; color: var(--text-secondary);
+}
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 900px) {
+  .lib-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .lib-grid { grid-template-columns: 1fr; }
+  .lib-inner { padding: 0 16px; }
+  .lib-hero { padding: 24px 0 32px; }
+  .lib-cover { height: 120px; }
+  .lib-cover-icon { font-size: 44px; }
+  .lib-section { padding: 28px 0 72px; }
+}
+</style>
+</head>
+<body class="lib-page">
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="https://www.instagram.com/vasilina_pavlovich" target="_blank" class="nav-logo">
+      <img src="../../assets/image-1.jpg" style="width:34px;height:34px;border-radius:50%;object-fit:cover;object-position:center 10%;border:2px solid var(--green-main);flex-shrink:0" alt="Василина">
+      <span class="nav-logo-text">Василина Павлович</span>
+    </a>
+    <div class="nav-links">
+      <a href="../../index.html">Главная</a>
+      <a href="../../index.html#about">Обо мне</a>
+      <a href="../../index.html#uslugi">Услуги</a>
+      <a href="../../index.html#results">Кейсы</a>
+      <a href="../../materials.html" class="active">Материалы</a>
+      <a href="../../index.html#faq">FAQ</a>
+    </div>
+    <div class="nav-right">
+      <button class="hamburger" onclick="toggleMenu()" aria-label="Меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="../../index.html" onclick="closeMenu()">Главная</a>
+  <a href="../../index.html#about" onclick="closeMenu()">Обо мне</a>
+  <a href="../../index.html#uslugi" onclick="closeMenu()">Услуги</a>
+  <a href="../../index.html#results" onclick="closeMenu()">Кейсы</a>
+  <a href="../../materials.html" onclick="closeMenu()">Материалы</a>
+  <a href="../../index.html#faq" onclick="closeMenu()">FAQ</a>
+  <a href="https://t.me/vasilina_pavlovich7" target="_blank" class="btn-pill btn-blue" style="margin-top:4px;justify-content:center">Написать в Telegram</a>
+</div>
+
+<!-- TOPBAR: breadcrumbs + hero -->
+<div class="lib-topbar">
+  <div class="lib-inner">
+    <nav class="lib-breadcrumbs">
+      <a href="../../index.html">Главная</a>
+      <span class="lib-breadcrumbs-sep">›</span>
+      <a href="../../materials.html">Материалы</a>
+      <span class="lib-breadcrumbs-sep">›</span>
+      <span class="lib-breadcrumbs-current">AI-агенты</span>
+    </nav>
+    <div class="lib-hero">
+      <span class="lib-hero-eyebrow">🤖</span>
+      <h1>AI-агенты</h1>
+      <p class="lib-hero-desc">Как работают, из чего состоят и как создать своего первого агента — от объяснения базовых понятий до практики.</p>
+      <div class="lib-hero-meta">
+        <span class="lib-hero-meta-item">📚 6 материалов</span>
+        <span class="lib-hero-meta-item">✦ 2 доступны сейчас</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- GRID -->
+<div class="lib-page">
+  <div class="lib-inner">
+    <section class="lib-section">
+      <span class="lib-section-label">Все материалы</span>
+      <div class="lib-grid">
+
+        <!-- 1. Что такое ИИ-агент — ACTIVE -->
+        <a href="what-is-ai-agent.html" class="lib-card">
+          <div class="lib-cover lib-cover--agents">
+            <span class="lib-cover-badge">Start</span>
+            <div class="lib-cover-text">
+              <p class="lib-cover-title">Что такое ИИ-агент</p>
+              <p class="lib-cover-sub">Базовые понятия</p>
+            </div>
+          </div>
+          <div class="lib-card-body">
+            <div class="lib-card-meta">
+              <span class="lib-tag lib-tag--free">Бесплатно</span>
+              <span class="lib-tag lib-tag--level">Новичок</span>
+              <span class="lib-card-time">📖 15 мин</span>
+            </div>
+            <h3 class="lib-card-title">Что такое ИИ-агент</h3>
+            <p class="lib-card-desc">Простое объяснение того, как работают AI-агенты, чем они отличаются от ChatGPT и какие задачи могут выполнять без постоянного участия человека.</p>
+            <span class="lib-card-cta">Читать →</span>
+          </div>
+        </a>
+
+        <!-- 2. Создаём первого AI-агента — ACTIVE -->
+        <a href="build-first-ai-agent.html" class="lib-card">
+          <div class="lib-cover lib-cover--build">
+            <span class="lib-cover-badge">Practice</span>
+            <div class="lib-cover-text">
+              <p class="lib-cover-title">Создаём первого AI-агента</p>
+              <p class="lib-cover-sub">Практика с нуля</p>
+            </div>
+          </div>
+          <div class="lib-card-body">
+            <div class="lib-card-meta">
+              <span class="lib-tag lib-tag--free">Бесплатно</span>
+              <span class="lib-tag lib-tag--level">Практика</span>
+              <span class="lib-card-time">📖 20 мин</span>
+            </div>
+            <h3 class="lib-card-title">Создаём первого AI-агента</h3>
+            <p class="lib-card-desc">Пошаговая практика: собираем агента в Make без написания кода — от идеи до рабочего прототипа за один вечер.</p>
+            <span class="lib-card-cta">Читать →</span>
+          </div>
+        </a>
+
+        <!-- 3. Душа агента — SOON -->
+        <div class="lib-card">
+          <div class="lib-cover lib-cover--soul">
+            <span class="lib-cover-badge">Setup</span>
+            <div class="lib-cover-text">
+              <p class="lib-cover-title">Душа агента</p>
+              <p class="lib-cover-sub">Системный промпт</p>
+            </div>
+          </div>
+          <div class="lib-card-body">
+            <div class="lib-card-meta">
+              <span class="lib-tag lib-tag--soon">Скоро</span>
+            </div>
+            <h3 class="lib-card-title">Душа агента</h3>
+            <p class="lib-card-desc">Что такое системный промпт агента, почему он важен и как написать его так, чтобы агент вёл себя именно так, как нужно.</p>
+            <span class="lib-soon-pill">🕐 Скоро</span>
+          </div>
+        </div>
+
+        <!-- 4. Память агента — SOON -->
+        <div class="lib-card">
+          <div class="lib-cover lib-cover--memory">
+            <span class="lib-cover-badge">Setup</span>
+            <div class="lib-cover-text">
+              <p class="lib-cover-title">Память агента</p>
+              <p class="lib-cover-sub">Контекст и история</p>
+            </div>
+          </div>
+          <div class="lib-card-body">
+            <div class="lib-card-meta">
+              <span class="lib-tag lib-tag--soon">Скоро</span>
+            </div>
+            <h3 class="lib-card-title">Память агента</h3>
+            <p class="lib-card-desc">Как дать агенту долгосрочную память, не потерять контекст и сделать так, чтобы он помнил пользователей между сессиями.</p>
+            <span class="lib-soon-pill">🕐 Скоро</span>
+          </div>
+        </div>
+
+        <!-- 5. Инструменты агента — SOON -->
+        <div class="lib-card">
+          <div class="lib-cover lib-cover--tools">
+            <span class="lib-cover-badge">Setup</span>
+            <div class="lib-cover-text">
+              <p class="lib-cover-title">Инструменты агента</p>
+              <p class="lib-cover-sub">Функции и действия</p>
+            </div>
+          </div>
+          <div class="lib-card-body">
+            <div class="lib-card-meta">
+              <span class="lib-tag lib-tag--soon">Скоро</span>
+            </div>
+            <h3 class="lib-card-title">Инструменты агента</h3>
+            <p class="lib-card-desc">Какие инструменты подключают к агентам, как агент решает, что и когда использовать, и как выбрать нужный набор под задачу.</p>
+            <span class="lib-soon-pill">🕐 Скоро</span>
+          </div>
+        </div>
+
+        <!-- 6. Контент-агент — SOON -->
+        <div class="lib-card">
+          <div class="lib-cover lib-cover--content">
+            <span class="lib-cover-badge">Practice</span>
+            <div class="lib-cover-text">
+              <p class="lib-cover-title">Контент-агент</p>
+              <p class="lib-cover-sub">Кейс автоматизации</p>
+            </div>
+          </div>
+          <div class="lib-card-body">
+            <div class="lib-card-meta">
+              <span class="lib-tag lib-tag--soon">Скоро</span>
+            </div>
+            <h3 class="lib-card-title">Контент-агент</h3>
+            <p class="lib-card-desc">Практический разбор: агент, который собирает темы, пишет посты и публикует контент — почти без участия человека.</p>
+            <span class="lib-soon-pill">🕐 Скоро</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-overlay"></div>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">
+        <img src="../../assets/image-3.jpg" style="width:40px;height:40px;border-radius:50%;object-fit:cover;object-position:center 10%;border:2px solid var(--green-main)" alt="Василина">
+        <span class="footer-logo-text">Василина Павлович</span>
+      </div>
+      <div class="footer-socials">
+        <a href="https://instagram.com/vasilina_pavlovich" target="_blank" class="footer-social-link">
+          <span class="footer-soc-badge footer-soc-badge--instagram">
+            <svg class="footer-soc-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/></svg>
+          </span>
+          <span class="footer-soc-handle">@vasilina_pavlovich</span>
+        </a>
+        <a href="https://t.me/vasilina_pavlovich7" target="_blank" class="footer-social-link">
+          <span class="footer-soc-badge footer-soc-badge--telegram">
+            <svg class="footer-soc-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4 20-7z"/><path d="M22 2 11 13"/></svg>
+          </span>
+          <span class="footer-soc-handle">@vasilina_pavlovich7</span>
+        </a>
+        <a href="https://t.me/deviichnik_ai" target="_blank" class="footer-social-link">
+          <span class="footer-soc-badge footer-soc-badge--telegram">
+            <svg class="footer-soc-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4 20-7z"/><path d="M22 2 11 13"/></svg>
+          </span>
+          <span class="footer-soc-handle">@deviichnik_ai</span>
+        </a>
+        <a href="https://www.youtube.com/@ВасилинаПавлович7" target="_blank" class="footer-social-link">
+          <span class="footer-soc-badge footer-soc-badge--youtube">
+            <svg class="footer-soc-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg>
+          </span>
+          <span class="footer-soc-handle">@ВасилинаПавлович7</span>
+        </a>
+      </div>
+      <a href="https://t.me/vasilina_pavlovich7" target="_blank" class="btn-footer-cta">Связаться →</a>
+    </div>
+    <div class="footer-links-col">
+      <h4>Навигация</h4>
+      <a href="../../index.html#about">Обо мне</a>
+      <a href="../../index.html#uslugi">Услуги</a>
+      <a href="../../index.html#results">Кейсы</a>
+      <a href="../../materials.html">Материалы</a>
+      <a href="../../index.html#faq">FAQ</a>
+    </div>
+    <div class="footer-links-col">
+      <h4>Услуги</h4>
+      <a href="../../index.html#obuchenie">Обучение нейросетям</a>
+      <a href="../../index.html#biznes">AI для бизнеса</a>
+      <a href="../../index.html#kurs">Курс AI-Фриланс</a>
+    </div>
+  </div>
+  <div class="footer-bottom">Спасибо GPT и Claude за помощь в создании этого сайта 💚 · © 2026 Василина Павлович · @vasilina_pavlovich7</div>
+</footer>
+
+<script>
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open')}
+function closeMenu(){document.getElementById('mobileMenu').classList.remove('open')}
+</script>
+</body>
+</html>

@@ -28,144 +28,161 @@
 <noscript><div><img src="https://mc.yandex.ru/watch/109718069" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
 <style>
-.mat-hero {
-  padding: 80px 24px 56px;
-  text-align: center;
+/* ---- HUB HERO ---- */
+.hub-hero {
+  padding: 28px 24px 24px;
   background: var(--bg);
   border-bottom: 1px solid var(--border);
+  text-align: center;
 }
-.mat-hero h1 {
+.hub-hero h1 {
   font-family: 'Syne', sans-serif;
-  font-size: clamp(32px, 5vw, 52px);
+  font-size: clamp(24px, 3.5vw, 36px);
   font-weight: 800;
   color: var(--text-primary);
-  letter-spacing: -1px;
-  margin: 0 0 14px;
+  letter-spacing: -0.5px;
+  margin: 0 0 6px;
 }
-.mat-hero p {
-  font-size: 17px;
+.hub-hero p {
+  font-size: 14px;
   color: var(--text-secondary);
-  font-weight: 400;
-  max-width: 480px;
-  margin: 0 auto;
-  line-height: 1.6;
+  margin: 0;
+  line-height: 1.55;
 }
-.mat-section {
-  padding: 56px 24px 80px;
+
+/* ---- HUB SECTION ---- */
+.hub-section {
+  padding: 28px 24px 72px;
   background: var(--bg);
 }
-.mat-content {
-  max-width: 620px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+.hub-inner { max-width: 860px; margin: 0 auto; }
+.hub-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--text-secondary); display: block; margin-bottom: 14px;
 }
-.mat-card {
-  background: var(--bg-card);
+
+/* ---- CARD GRID ---- */
+.hub-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+/* Card base */
+.hub-card {
+  background: #fff;
   border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 32px 28px;
-  box-shadow: var(--shadow);
+  border-radius: 16px;
+  padding: 22px 22px 20px;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.05), 0 4px 16px rgba(0,0,0,0.04);
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 0;
   text-decoration: none;
   color: inherit;
-  transition: box-shadow 0.22s ease, transform 0.22s ease, border-color 0.22s ease;
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+}
+/* Active card: top green stripe */
+a.hub-card {
+  cursor: pointer;
   border-top: 3px solid var(--green-main);
+  transition: box-shadow 0.22s ease, transform 0.22s ease;
 }
-.mat-card:hover {
-  box-shadow: var(--shadow-hover);
+a.hub-card:hover {
+  box-shadow: 0 4px 20px rgba(0,0,0,0.09), 0 12px 36px rgba(0,0,0,0.07);
   transform: translateY(-3px);
-  border-color: var(--green-main);
 }
-.mat-card-icon {
-  font-size: 36px;
+/* Soon cards: muted */
+div.hub-card { opacity: 0.62; }
+
+/* Icon */
+.hub-card-icon {
+  font-size: 28px;
   line-height: 1;
+  margin-bottom: 14px;
+  display: block;
 }
-.mat-card-tag {
-  display: inline-flex;
-  align-items: center;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--green-main);
-  background: var(--green-light);
-  border-radius: 6px;
-  padding: 3px 8px;
-  width: fit-content;
-}
-.mat-card-title {
+
+/* Title */
+.hub-card-title {
   font-family: 'Syne', sans-serif;
-  font-size: 20px;
-  font-weight: 700;
+  font-size: 16px; font-weight: 700;
   color: var(--text-primary);
-  margin: 0;
-  line-height: 1.35;
+  margin: 0 0 6px; line-height: 1.25;
 }
-.mat-card-desc {
-  font-size: 15px;
-  color: var(--text-secondary);
-  line-height: 1.65;
-  margin: 0;
+div.hub-card .hub-card-title { color: var(--text-secondary); }
+
+/* Description */
+.hub-card-desc {
+  font-size: 13px; color: var(--text-secondary);
+  line-height: 1.6; margin: 0 0 16px; flex: 1;
 }
-.mat-card-btn {
-  margin-top: 6px;
-  align-self: flex-start;
-  display: inline-flex;
-  align-items: center;
-  padding: 10px 20px;
-  background: var(--green-main);
-  color: #fff;
-  border-radius: var(--radius-pill);
-  font-size: 14px;
-  font-weight: 600;
-  transition: background 0.2s ease, transform 0.2s ease;
+
+/* Footer */
+.hub-card-footer {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-top: 12px; border-top: 1px solid var(--border);
+  margin-top: auto;
 }
-.mat-card:hover .mat-card-btn {
-  background: var(--green-dark);
-  transform: translateX(2px);
+.hub-badge-count {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.06em;
+  color: var(--green-dark); background: var(--green-light);
+  border-radius: 5px; padding: 2px 8px;
 }
-.mat-soon {
-  background: var(--bg-card);
+.hub-badge-soon {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.06em;
+  color: #94a3b8; background: #f8fafc; border: 1px solid #e9eef4;
+  border-radius: 5px; padding: 2px 8px;
+}
+.hub-arrow {
+  font-size: 15px; line-height: 1;
+  color: var(--green-main); font-weight: 600;
+}
+div.hub-card .hub-arrow { color: #cbd5e1; }
+
+/* ---- NEW ARTICLE CARD ---- */
+.hub-new-card {
+  display: flex; align-items: center; gap: 20px;
+  background: #fff;
   border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 28px;
-  box-shadow: var(--shadow);
+  border-left: 3px solid var(--green-main);
+  border-radius: 14px;
+  padding: 20px 22px;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.04);
+  text-decoration: none; color: inherit;
+  transition: box-shadow 0.22s ease, transform 0.22s ease;
 }
-.mat-soon-title {
-  font-family: 'Syne', sans-serif;
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--text-secondary);
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  margin: 0 0 18px;
+.hub-new-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.09); transform: translateY(-2px); }
+.hub-new-body { flex: 1; min-width: 0; }
+.hub-new-meta { display: flex; align-items: center; gap: 6px; margin-bottom: 7px; flex-wrap: wrap; }
+.hub-new-tag {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;
+  color: var(--green-dark); background: var(--green-light); border-radius: 4px; padding: 2px 7px;
 }
-.mat-soon-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 13px;
+.hub-new-dot { color: var(--border); font-size: 12px; }
+.hub-new-time { font-size: 12px; color: var(--text-secondary); }
+.hub-new-title { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; color: var(--text-primary); margin: 0 0 5px; line-height: 1.3; }
+.hub-new-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.55; margin: 0; }
+.hub-new-btn {
+  display: inline-flex; align-items: center;
+  padding: 9px 18px; background: var(--green-main); color: #fff;
+  border-radius: var(--radius-pill); font-size: 13px; font-weight: 600;
+  white-space: nowrap; flex-shrink: 0;
+  transition: background 0.2s ease;
 }
-.mat-soon-list li {
-  font-size: 15px;
-  color: var(--text-secondary);
-  opacity: 0.6;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-@media (max-width: 600px) {
-  .mat-hero { padding: 60px 16px 40px; }
-  .mat-section { padding: 40px 16px 60px; }
-  .mat-card { padding: 24px 20px; }
-  .mat-card-title { font-size: 18px; }
-  .mat-soon { padding: 20px; }
+.hub-new-card:hover .hub-new-btn { background: var(--green-dark); }
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 580px) {
+  .hub-hero { padding: 20px 16px 18px; }
+  .hub-section { padding: 20px 16px 56px; }
+  .hub-grid { grid-template-columns: 1fr; gap: 12px; }
+  .hub-card { padding: 18px 18px 16px; }
+  .hub-card-icon { font-size: 24px; margin-bottom: 10px; }
+  .hub-new-card { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .hub-new-btn { align-self: flex-start; }
 }
 </style>
 </head>
@@ -203,36 +220,87 @@
 </div>
 
 <!-- HERO -->
-<div class="mat-hero">
-  <h1>Полезные материалы</h1>
-  <p>Бесплатные уроки и подборки по AI - всё в одном месте</p>
+<div class="hub-hero" style="padding-top:88px">
+  <h1>Материалы</h1>
+  <p>Гайды, статьи и разборы по AI — бесплатно</p>
 </div>
 
-<!-- MATERIALS -->
-<section class="mat-section">
-  <div class="mat-content">
+<!-- CATEGORIES -->
+<section class="hub-section">
+  <div class="hub-inner">
+    <span class="hub-label">Категории</span>
+    <div class="hub-grid">
 
-    <!-- Бесплатный урок -->
-    <a href="#" class="mat-card">
-      <span class="mat-card-icon">🎓</span>
-      <span class="mat-card-tag">Бесплатно</span>
-      <h3 class="mat-card-title">AI-профессии: 5 способов заработать с помощью нейросетей в 2026 году</h3>
-      <p class="mat-card-desc">Узнай, какие AI-навыки сейчас востребованы, какие услуги покупают клиенты и какие направления могут стать новой профессией.</p>
-      <span class="mat-card-btn">Смотреть бесплатно →</span>
-    </a>
+      <a href="materials/agents/index.html" class="hub-card">
+        <span class="hub-card-icon">🤖</span>
+        <h3 class="hub-card-title">AI-агенты</h3>
+        <p class="hub-card-desc">Как работают, из чего состоят и как создать своего первого агента</p>
+        <div class="hub-card-footer">
+          <span class="hub-badge-count">2 материала</span>
+          <span class="hub-arrow">→</span>
+        </div>
+      </a>
 
-    <!-- Скоро появится -->
-    <div class="mat-soon">
-      <h4 class="mat-soon-title">Скоро появится</h4>
-      <ul class="mat-soon-list">
-        <li>📘 Гайд по ChatGPT для новичков</li>
-        <li>🗂️ Каталог AI-инструментов со ссылками</li>
-        <li>🤖 Как создать AI-агента</li>
-        <li>💬 Как создать Telegram-бота</li>
-        <li>🌐 Как создать сайт без программирования</li>
-        <li>🌴 Как найти удалённую работу с помощью AI</li>
-        <li>🏢 AI для бизнеса: с чего начать</li>
-      </ul>
+      <div class="hub-card">
+        <span class="hub-card-icon">🚀</span>
+        <h3 class="hub-card-title">Старт в ИИ</h3>
+        <p class="hub-card-desc">Первые шаги, базовые инструменты и простое объяснение нейросетей</p>
+        <div class="hub-card-footer">
+          <span class="hub-badge-soon">Скоро</span>
+          <span class="hub-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="hub-card">
+        <span class="hub-card-icon">🧠</span>
+        <h3 class="hub-card-title">Claude</h3>
+        <p class="hub-card-desc">Промпты, возможности и лучшие практики работы с Claude</p>
+        <div class="hub-card-footer">
+          <span class="hub-badge-soon">Скоро</span>
+          <span class="hub-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="hub-card">
+        <span class="hub-card-icon">💰</span>
+        <h3 class="hub-card-title">Заработок с ИИ</h3>
+        <p class="hub-card-desc">AI-профессии, фриланс и способы монетизировать навыки работы с нейросетями</p>
+        <div class="hub-card-footer">
+          <span class="hub-badge-soon">Скоро</span>
+          <span class="hub-arrow">→</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="margin-top:32px;padding-top:28px;border-top:1px solid var(--border)">
+      <span class="hub-label">Новое в библиотеке</span>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <a href="materials/agents/build-first-ai-agent.html" class="hub-new-card">
+          <div class="hub-new-body">
+            <div class="hub-new-meta">
+              <span class="hub-new-tag">Практика</span>
+              <span class="hub-new-dot">·</span>
+              <span class="hub-new-time">📖 20 минут</span>
+            </div>
+            <h3 class="hub-new-title">Создаём первого AI-агента</h3>
+            <p class="hub-new-desc">Пошаговая практика: собираем агента в Make без написания кода — от идеи до рабочего прототипа за один вечер.</p>
+          </div>
+          <span class="hub-new-btn">Читать →</span>
+        </a>
+        <a href="materials/agents/what-is-ai-agent.html" class="hub-new-card">
+          <div class="hub-new-body">
+            <div class="hub-new-meta">
+              <span class="hub-new-tag">Бесплатно</span>
+              <span class="hub-new-dot">·</span>
+              <span class="hub-new-time">📖 15 минут</span>
+            </div>
+            <h3 class="hub-new-title">Что такое AI-агент</h3>
+            <p class="hub-new-desc">За 15 минут поймёшь, как работают современные AI-агенты и почему они отличаются от обычного ChatGPT.</p>
+          </div>
+          <span class="hub-new-btn">Читать →</span>
+        </a>
+      </div>
     </div>
 
   </div>

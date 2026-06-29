@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Как собрать своего первого ИИ-агента | AI-агенты | Василина Павлович</title>
+<meta name="description" content="Пошаговая практика: устанавливаем Hermes, подключаем OpenRouter и Telegram — от идеи до рабочего агента за один вечер. Без кода.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400;1,700&family=Manrope:wght@400;500;600&family=Syne:wght@700;800&family=Lora:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../style.css">
+<script type="text/javascript">
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();
+   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+   ym(109718069, "init", { clickmap:true, trackLinks:true, accurateTrackBounce:true });
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/109718069" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<style>
+.art-cover {
+  width:100%; height:200px;
+  background:linear-gradient(145deg,#0a1a0c 0%,#0e2112 55%,#122816 100%);
+  display:flex; flex-direction:column; justify-content:space-between;
+  padding:24px 32px 28px; position:relative; overflow:hidden;
+  margin-top:64px; box-sizing:border-box;
+}
+.art-cover::after {
+  content:''; position:absolute; inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);
+  background-size:28px 28px; pointer-events:none; z-index:0;
+}
+.art-cover::before {
+  content:''; position:absolute; width:260px; height:260px; border-radius:50%;
+  border:44px solid rgba(255,255,255,0.04); bottom:-90px; right:-50px;
+  pointer-events:none; z-index:0;
+}
+.art-cover-badge {
+  display:inline-flex; align-self:flex-start;
+  font-size:9px; font-weight:800; letter-spacing:0.14em; text-transform:uppercase;
+  color:rgba(255,255,255,0.6); background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.12); border-radius:4px; padding:3px 9px;
+  position:relative; z-index:1;
+}
+.art-cover-text { position:relative; z-index:1; }
+.art-cover-title {
+  font-family:'Syne',sans-serif; font-size:clamp(20px,3.5vw,28px); font-weight:800;
+  color:#fff; margin:0 0 5px; line-height:1.15; letter-spacing:-0.3px;
+}
+.art-cover-sub { font-size:12px; color:rgba(255,255,255,0.35); margin:0; font-weight:500; }
+
+.art-page { background:var(--bg); }
+.art-wrap { max-width:680px; margin:0 auto; padding:0 24px; }
+
+.art-back {
+  display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:500;
+  color:var(--text-secondary); text-decoration:none; padding:18px 0 0; transition:color 0.2s;
+}
+.art-back:hover { color:var(--green-dark); }
+
+.art-breadcrumbs {
+  display:flex; align-items:center; gap:6px; flex-wrap:wrap;
+  font-size:12px; color:var(--text-secondary); padding:8px 0 0;
+}
+.art-breadcrumbs a { color:var(--text-secondary); text-decoration:none; transition:color 0.2s; }
+.art-breadcrumbs a:hover { color:var(--green-dark); }
+.art-breadcrumbs-sep { opacity:0.35; }
+.art-breadcrumbs-current { color:var(--text-primary); font-weight:500; }
+
+.art-header { padding:24px 0 28px; border-bottom:1px solid var(--border); }
+.art-badge {
+  display:inline-flex; font-size:11px; font-weight:700; letter-spacing:0.08em;
+  text-transform:uppercase; color:var(--green-dark); background:var(--green-light);
+  border-radius:6px; padding:3px 9px; margin-bottom:16px;
+}
+.art-header h1 {
+  font-family:'Syne',sans-serif; font-size:clamp(24px,4vw,34px); font-weight:800;
+  color:var(--text-primary); letter-spacing:-0.5px; margin:0 0 12px; line-height:1.12;
+}
+.art-meta { font-size:13px; color:var(--text-secondary); margin:0 0 20px; }
+.art-lead {
+  font-size:17.5px; line-height:1.75; color:var(--text-primary);
+}
+.art-lead p { margin:0 0 8px; }
+.art-lead p:last-child { margin:0; }
+
+.art-body { padding:32px 0; }
+.art-body p {
+  font-size:17px; line-height:1.85; color:var(--text-primary); margin:0 0 16px;
+}
+.art-body h2 {
+  font-family:'Syne',sans-serif; font-size:clamp(18px,2.5vw,22px); font-weight:800;
+  color:var(--text-primary); margin:0 0 14px; letter-spacing:-0.2px; line-height:1.2;
+}
+.art-body strong { font-weight:700; color:var(--text-primary); }
+
+.art-term {
+  background:rgba(59,130,246,0.1); color:#1d4ed8;
+  padding:1px 6px 2px; border-radius:4px; font-weight:600; font-size:0.94em; white-space:nowrap;
+}
+
+.art-divider { border:none; border-top:1px solid var(--border); margin:34px 0; }
+
+.art-pullquote { margin:28px 0; padding:10px 0 10px 22px; border-left:3px solid var(--green-main); }
+.art-pullquote p {
+  font-family:'Lora',serif; font-style:italic; font-size:19px; line-height:1.7;
+  color:#475569; margin:0;
+}
+
+/* Step blocks */
+.art-step {
+  margin:0 0 28px;
+  border:1px solid var(--border); border-radius:12px; overflow:hidden;
+}
+.art-step-head {
+  display:flex; align-items:center; gap:12px; padding:13px 20px;
+  background:var(--green-light); border-bottom:1px solid var(--border);
+}
+.art-step-num {
+  font-size:10px; font-weight:800; letter-spacing:0.1em; text-transform:uppercase;
+  color:var(--green-dark); background:rgba(34,197,94,0.18);
+  border-radius:5px; padding:3px 9px; white-space:nowrap; flex-shrink:0;
+}
+.art-step-title {
+  font-family:'Syne',sans-serif; font-size:15px; font-weight:800;
+  color:var(--text-primary); margin:0;
+}
+.art-step-body { padding:18px 20px 14px; }
+.art-step-body p {
+  font-size:15.5px; line-height:1.8; color:var(--text-secondary); margin:0 0 12px;
+}
+.art-step-body p:last-child { margin:0; }
+
+/* Screenshot placeholder */
+.art-screenshot {
+  margin:14px 0 4px;
+  background:#f8fafc;
+  border:1.5px dashed #cbd5e1;
+  border-radius:10px;
+  padding:20px 24px 18px;
+  text-align:center;
+}
+.art-screenshot-icon { font-size:22px; display:block; margin-bottom:6px; }
+.art-screenshot-label {
+  font-size:13px; color:var(--text-secondary);
+  font-style:italic; line-height:1.5; margin:0;
+}
+
+/* CTA consultation block */
+.art-consult {
+  margin:32px 0 0;
+  background:var(--green-light);
+  border:1.5px solid rgba(34,197,94,0.25);
+  border-radius:16px;
+  padding:28px 28px 26px;
+}
+.art-consult h3 {
+  font-family:'Syne',sans-serif; font-size:19px; font-weight:800;
+  color:var(--text-primary); margin:0 0 14px; letter-spacing:-0.2px;
+}
+.art-consult p {
+  font-size:15px; line-height:1.8; color:var(--text-secondary); margin:0 0 10px;
+}
+.art-consult p:last-of-type { margin-bottom:18px; }
+.art-consult-btn {
+  display:inline-flex; align-items:center; align-self:flex-start;
+  padding:12px 24px; background:var(--green-main); color:#fff;
+  border-radius:var(--radius-pill); font-size:14px; font-weight:600;
+  text-decoration:none; transition:background 0.2s;
+}
+.art-consult-btn:hover { background:var(--green-dark); }
+
+.art-cta { border-top:1px solid var(--border); padding:28px 0 64px; }
+.art-cta-next {
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+  padding:16px 0; border-top:1px solid var(--border); margin-bottom:18px;
+}
+.art-cta-next-body { flex:1; min-width:0; }
+.art-cta-label {
+  font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;
+  color:var(--text-secondary); display:block; margin-bottom:4px;
+}
+.art-cta-next-title { font-size:15px; font-weight:600; color:var(--text-primary); margin:0; line-height:1.3; }
+.art-cta-btn {
+  display:inline-flex; align-items:center; padding:9px 18px;
+  background:var(--green-main); color:#fff; border-radius:var(--radius-pill);
+  font-size:13px; font-weight:600; text-decoration:none; white-space:nowrap; flex-shrink:0;
+  transition:background 0.2s;
+}
+.art-cta-btn:hover { background:var(--green-dark); }
+.art-back-bottom {
+  display:inline-flex; align-items:center; gap:6px;
+  font-size:13px; color:var(--text-secondary); text-decoration:none; transition:color 0.2s;
+}
+.art-back-bottom:hover { color:var(--green-dark); }
+
+@media (max-width:600px) {
+  .art-wrap { padding:0 18px; }
+  .art-cover { padding:20px 20px 22px; height:180px; }
+  .art-body p { font-size:16px; }
+  .art-lead { font-size:16.5px; }
+  .art-pullquote p { font-size:17px; }
+  .art-cta-next { flex-direction:column; align-items:flex-start; gap:10px; }
+  .art-consult { padding:22px 20px 20px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="https://www.instagram.com/vasilina_pavlovich" target="_blank" class="nav-logo">
+      <img src="../../assets/image-1.jpg" style="width:34px;height:34px;border-radius:50%;object-fit:cover;object-position:center 10%;border:2px solid var(--green-main);flex-shrink:0" alt="Василина">
+      <span class="nav-logo-text">Василина Павлович</span>
+    </a>
+    <div class="nav-links">
+      <a href="../../index.html">Главная</a>
+      <a href="../../index.html#about">Обо мне</a>
+      <a href="../../index.html#uslugi">Услуги</a>
+      <a href="../../index.html#results">Кейсы</a>
+      <a href="../../materials.html" class="active">Материалы</a>
+      <a href="../../index.html#faq">FAQ</a>
+    </div>
+    <div class="nav-right">
+      <button class="hamburger" onclick="toggleMenu()" aria-label="Меню"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="../../index.html" onclick="closeMenu()">Главная</a>
+  <a href="../../index.html#about" onclick="closeMenu()">Обо мне</a>
+  <a href="../../index.html#uslugi" onclick="closeMenu()">Услуги</a>
+  <a href="../../index.html#results" onclick="closeMenu()">Кейсы</a>
+  <a href="../../materials.html" onclick="closeMenu()">Материалы</a>
+  <a href="../../index.html#faq" onclick="closeMenu()">FAQ</a>
+  <a href="https://t.me/vasilina_pavlovich7" target="_blank" class="btn-pill btn-blue" style="margin-top:4px;justify-content:center">Написать в Telegram</a>
+</div>
+
+<div class="art-cover">
+  <span class="art-cover-badge">Practice · AI-агенты</span>
+  <div class="art-cover-text">
+    <p class="art-cover-title">Как собрать своего первого ИИ-агента</p>
+    <p class="art-cover-sub">Практика с нуля · 10–15 минут</p>
+  </div>
+</div>
+
+<div class="art-page">
+  <div style="border-bottom:1px solid var(--border)">
+    <div class="art-wrap">
+      <a href="index.html" class="art-back">← Все материалы</a>
+      <nav class="art-breadcrumbs">
+        <a href="../../index.html">Главная</a>
+        <span class="art-breadcrumbs-sep">›</span>
+        <a href="../../materials.html">Материалы</a>
+        <span class="art-breadcrumbs-sep">›</span>
+        <a href="index.html">AI-агенты</a>
+        <span class="art-breadcrumbs-sep">›</span>
+        <span class="art-breadcrumbs-current">Как собрать своего первого ИИ-агента</span>
+      </nav>
+      <header class="art-header">
+        <span class="art-badge">Практика</span>
+        <h1>Как собрать своего первого ИИ-агента</h1>
+        <p class="art-meta">📖 10–15 минут чтения&nbsp;•&nbsp;Василина Павлович</p>
+        <div class="art-lead">
+          <p>В прошлый раз я объяснила, что такое агент и как он работает. Теперь — как его запустить.</p>
+        </div>
+      </header>
+    </div>
+  </div>
+
+  <div class="art-wrap">
+    <div class="art-body">
+
+      <p>Мир сейчас делится на два лагеря.</p>
+
+      <p>Те, кто использует агентов — и все остальные.</p>
+
+      <p>Первые на много шагов впереди: они делегируют рутину, освобождают время, двигаются быстрее. Вторые делают всё руками и думают, что «пока не готовы разбираться».</p>
+
+      <p>Вы знаете, что раньше выигрывал тот, кто больше знал и умел. Теперь — тот, кто умеет делегировать машине и стоять над процессом, а не внутри него.</p>
+
+      <div class="art-pullquote">
+        <p>Навыки обесцениваются. Умение управлять агентами — нет.</p>
+      </div>
+
+      <p>И хорошая новость: стать «теми, кто использует» на самом деле не сложно. Это пару дней и порог входа смешной. Все только начинают с нуля.</p>
+
+      <p>Если начать сейчас — через какое-то время ты сможешь стать тем, кто зарабатывает на том, что настраивает агентов другим. Просто потому что большинство всё ещё думает «попозже».</p>
+
+      <hr class="art-divider">
+
+      <h2>Окей, как это сделать</h2>
+
+      <p>Мы будем устанавливать <span class="art-term">Hermes</span> — бесплатный открытый агент с памятью, скиллами и режимом, когда он сам думает о твоих целях.</p>
+
+      <p>Вот из чего состоит весь путь:</p>
+
+      <hr class="art-divider">
+
+      <!-- ШАГ 1 -->
+      <div class="art-step">
+        <div class="art-step-head">
+          <span class="art-step-num">Шаг 1</span>
+          <p class="art-step-title">Арендуй сервер</p>
+        </div>
+        <div class="art-step-body">
+          <p>Это виртуальный компьютер в интернете — там будет жить агент и работать 24/7, пока ты спишь. Стоит около 10$ в месяц. Берёшь на Beget или TimeWeb, выбираешь <span class="art-term">Ubuntu</span>, самый дешёвый тариф.</p>
+          <div class="art-screenshot">
+            <span class="art-screenshot-icon">📸</span>
+            <p class="art-screenshot-label">Здесь будет скрин страницы выбора тарифа <span class="art-term">VPS</span></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ШАГ 2 -->
+      <div class="art-step">
+        <div class="art-step-head">
+          <span class="art-step-num">Шаг 2</span>
+          <p class="art-step-title">Подключись к серверу</p>
+        </div>
+        <div class="art-step-body">
+          <p>На Mac — через Терминал, на Windows — через <span class="art-term">PuTTY</span>. Вводишь одну команду с IP-адресом сервера — и ты внутри.</p>
+          <div class="art-screenshot">
+            <span class="art-screenshot-icon">📸</span>
+            <p class="art-screenshot-label">Здесь будет скрин окна терминала после подключения к серверу</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ШАГ 3 -->
+      <div class="art-step">
+        <div class="art-step-head">
+          <span class="art-step-num">Шаг 3</span>
+          <p class="art-step-title">Установи Hermes</p>
+        </div>
+        <div class="art-step-body">
+          <p>Одна команда — и установщик сам всё делает. Скачивает нужные программы, настраивает. Занимает 3–5 минут, ты просто ждёшь.</p>
+          <div class="art-screenshot">
+            <span class="art-screenshot-icon">📸</span>
+            <p class="art-screenshot-label">Здесь будет скрин процесса установки <span class="art-term">Hermes</span></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ШАГ 4 -->
+      <div class="art-step">
+        <div class="art-step-head">
+          <span class="art-step-num">Шаг 4</span>
+          <p class="art-step-title">Подключи ИИ-модель</p>
+        </div>
+        <div class="art-step-body">
+          <p>Регистрируешься на <span class="art-term">OpenRouter</span>, получаешь ключ, вводишь в настройках агента. Это его «мозги» — то, что думает и принимает решения.</p>
+          <div class="art-screenshot">
+            <span class="art-screenshot-icon">📸</span>
+            <p class="art-screenshot-label">Здесь будет скрин настройки модели через <span class="art-term">OpenRouter</span></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ШАГ 5 -->
+      <div class="art-step">
+        <div class="art-step-head">
+          <span class="art-step-num">Шаг 5</span>
+          <p class="art-step-title">Подключи Telegram</p>
+        </div>
+        <div class="art-step-body">
+          <p>Создаёшь бота через <span class="art-term">@BotFather</span>, вставляешь токен в настройки агента. После этого общаешься с ним прямо в <span class="art-term">Telegram</span> — как с обычным человеком.</p>
+          <div class="art-screenshot">
+            <span class="art-screenshot-icon">📸</span>
+            <p class="art-screenshot-label">Здесь будет скрин <span class="art-term">BotFather</span> и первая переписка с агентом</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ШАГ 6 -->
+      <div class="art-step">
+        <div class="art-step-head">
+          <span class="art-step-num">Шаг 6</span>
+          <p class="art-step-title">Расскажи ему о своих целях</p>
+        </div>
+        <div class="art-step-body">
+          <p>Это самый важный шаг. Не просто «привет» — а кто ты, чего хочешь от жизни, куда движешься. Именно это включает режим, когда агент начинает работать на тебя проактивно.</p>
+          <div class="art-screenshot">
+            <span class="art-screenshot-icon">📸</span>
+            <p class="art-screenshot-label">Здесь будет скрин первого сообщения агенту с целями</p>
+          </div>
+        </div>
+      </div>
+
+      <p>Всё. На следующее утро он уже что-нибудь пришлёт.</p>
+
+      <hr class="art-divider">
+
+      <div class="art-consult">
+        <h3>Если хочешь пройти это не вслепую</h3>
+        <p>Шаги выше — это скелет. На практике у каждого возникают вопросы: где именно нажать, что написать в «душу» агента, как настроить утренние дайджесты, как объяснить ему свои задачи, чтобы он реально помогал, а не отвечал абстрактно.</p>
+        <p>Я провожу личные консультации и обучение — где мы проходим через всё это вместе, под твою конкретную ситуацию и цели.</p>
+        <p>Без воды. Конкретно и по шагам.</p>
+        <a href="https://t.me/vasilina_pavlovich7" target="_blank" class="art-consult-btn">Записаться на консультацию →</a>
+      </div>
+
+    </div>
+
+    <div class="art-cta">
+      <div class="art-cta-next">
+        <div class="art-cta-next-body">
+          <span class="art-cta-label">Следующий материал</span>
+          <p class="art-cta-next-title">Душа агента — как написать системный промпт</p>
+        </div>
+        <a href="#" class="art-cta-btn">Скоро →</a>
+      </div>
+      <a href="index.html" class="art-back-bottom">← Все материалы об AI-агентах</a>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="footer-overlay"></div>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">
+        <img src="../../assets/image-3.jpg" style="width:40px;height:40px;border-radius:50%;object-fit:cover;object-position:center 10%;border:2px solid var(--green-main)" alt="Василина">
+        <span class="footer-logo-text">Василина Павлович</span>
+      </div>
+      <div class="footer-socials">
+        <a href="https://instagram.com/vasilina_pavlovich" target="_blank" class="footer-social-link">
+          <span class="footer-soc-badge footer-soc-badge--instagram">
+            <svg class="footer-soc-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/></svg>
+          </span>
+          <span class="footer-soc-handle">@vasilina_pavlovich</span>
+        </a>
+        <a href="https://t.me/vasilina_pavlovich7" target="_blank" class="footer-social-link">
+          <span class="footer-soc-badge footer-soc-badge--telegram">
+            <svg class="footer-soc-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4 20-7z"/><path d="M22 2 11 13"/></svg>
+          </span>
+          <span class="footer-soc-handle">@vasilina_pavlovich7</span>
+        </a>
+        <a href="https://t.me/deviichnik_ai" target="_blank" class="footer-social-link">
+          <span class="footer-soc-badge footer-soc-badge--telegram">
+            <svg class="footer-soc-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4 20-7z"/><path d="M22 2 11 13"/></svg>
+          </span>
+          <span class="footer-soc-handle">@deviichnik_ai</span>
+        </a>
+        <a href="https://www.youtube.com/@ВасилинаПавлович7" target="_blank" class="footer-social-link">
+          <span class="footer-soc-badge footer-soc-badge--youtube">
+            <svg class="footer-soc-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg>
+          </span>
+          <span class="footer-soc-handle">@ВасилинаПавлович7</span>
+        </a>
+      </div>
+      <a href="https://t.me/vasilina_pavlovich7" target="_blank" class="btn-footer-cta">Связаться →</a>
+    </div>
+    <div class="footer-links-col">
+      <h4>Навигация</h4>
+      <a href="../../index.html#about">Обо мне</a>
+      <a href="../../index.html#uslugi">Услуги</a>
+      <a href="../../index.html#results">Кейсы</a>
+      <a href="../../materials.html">Материалы</a>
+      <a href="../../index.html#faq">FAQ</a>
+    </div>
+    <div class="footer-links-col">
+      <h4>Услуги</h4>
+      <a href="../../index.html#obuchenie">Обучение нейросетям</a>
+      <a href="../../index.html#biznes">AI для бизнеса</a>
+      <a href="../../index.html#kurs">Курс AI-Фриланс</a>
+    </div>
+  </div>
+  <div class="footer-bottom">Спасибо GPT и Claude за помощь в создании этого сайта 💚 · © 2026 Василина Павлович · @vasilina_pavlovich7</div>
+</footer>
+
+<script>
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open')}
+function closeMenu(){document.getElementById('mobileMenu').classList.remove('open')}
+</script>
+</body>
+</html>

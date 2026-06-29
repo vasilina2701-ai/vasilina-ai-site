@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Что такое AI-агент | AI-агенты | Василина Павлович</title>
+<meta name="description" content="Что такое AI-агент, чем он отличается от ChatGPT и как работает цикл Think→Act→Observe. Объяснение для тех, кто хочет выйти на следующий уровень работы с нейросетями.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400;1,700&family=Manrope:wght@400;500;600&family=Syne:wght@700;800&family=Lora:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../style.css">
+<script type="text/javascript">
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();
+   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+   ym(109718069, "init", { clickmap:true, trackLinks:true, accurateTrackBounce:true });
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/109718069" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<style>
+.art-cover {
+  width:100%; height:200px;
+  background:linear-gradient(145deg,#0d1b2e 0%,#102242 55%,#152b58 100%);
+  display:flex; flex-direction:column; justify-content:space-between;
+  padding:24px 32px 28px; position:relative; overflow:hidden;
+  margin-top:64px; box-sizing:border-box;
+}
+.art-cover::after {
+  content:''; position:absolute; inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);
+  background-size:28px 28px; pointer-events:none; z-index:0;
+}
+.art-cover::before {
+  content:''; position:absolute; width:260px; height:260px; border-radius:50%;
+  border:44px solid rgba(255,255,255,0.04); bottom:-90px; right:-50px;
+  pointer-events:none; z-index:0;
+}
+.art-cover-badge {
+  display:inline-flex; align-self:flex-start;
+  font-size:9px; font-weight:800; letter-spacing:0.14em; text-transform:uppercase;
+  color:rgba(255,255,255,0.6); background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.12); border-radius:4px; padding:3px 9px;
+  position:relative; z-index:1;
+}
+.art-cover-text { position:relative; z-index:1; }
+.art-cover-title {
+  font-family:'Syne',sans-serif; font-size:clamp(20px,3.5vw,28px); font-weight:800;
+  color:#fff; margin:0 0 5px; line-height:1.15; letter-spacing:-0.3px;
+}
+.art-cover-sub { font-size:12px; color:rgba(255,255,255,0.35); margin:0; font-weight:500; }
+.art-page { background:var(--bg); }
+.art-wrap { max-width:680px; margin:0 auto; padding:0 24px; }
+.art-back {
+  display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:500;
+  color:var(--text-secondary); text-decoration:none; padding:18px 0 0; transition:color 0.2s;
+}
+.art-back:hover { color:var(--green-dark); }
+.art-breadcrumbs {
+  display:flex; align-items:center; gap:6px; flex-wrap:wrap;
+  font-size:12px; color:var(--text-secondary); padding:8px 0 0;
+}
+.art-breadcrumbs a { color:var(--text-secondary); text-decoration:none; transition:color 0.2s; }
+.art-breadcrumbs a:hover { color:var(--green-dark); }
+.art-breadcrumbs-sep { opacity:0.35; }
+.art-breadcrumbs-current { color:var(--text-primary); font-weight:500; }
+.art-header { padding:24px 0 28px; border-bottom:1px solid var(--border); }
+.art-badge {
+  display:inline-flex; font-size:11px; font-weight:700; letter-spacing:0.08em;
+  text-transform:uppercase; color:var(--green-dark); background:var(--green-light);
+  border-radius:6px; padding:3px 9px; margin-bottom:16px;
+}
+.art-header h1 {
+  font-family:'Syne',sans-serif; font-size:clamp(24px,4vw,34px); font-weight:800;
+  color:var(--text-primary); letter-spacing:-0.5px; margin:0 0 12px; line-height:1.12;
+}
+.art-meta { font-size:13px; color:var(--text-secondary); margin:0 0 22px; }
+.art-lead { font-size:17.5px; line-height:1.75; color:var(--text-primary); margin:0 0 16px; }
+.art-lead p { margin:0 0 8px; }
+.art-lead p:last-child { margin:0; }
+.art-target { font-size:14px; color:var(--text-secondary); font-style:italic; line-height:1.65; margin:0; }
+.art-body { padding:32px 0; }
+.art-body p { font-size:17px; line-height:1.85; color:var(--text-primary); margin:0 0 16px; }
+.art-body h2 {
+  font-family:'Syne',sans-serif; font-size:clamp(18px,2.5vw,22px); font-weight:800;
+  color:var(--text-primary); margin:0 0 14px; letter-spacing:-0.2px; line-height:1.2;
+}
+.art-body strong { font-weight:700; color:var(--text-primary); }
+.art-term {
+  background:rgba(59,130,246,0.1); color:#1d4ed8;
+  padding:1px 6px 2px; border-radius:4px; font-weight:600; font-size:0.94em; white-space:nowrap;
+}
+.art-divider { border:none; border-top:1px solid var(--border); margin:34px 0; }
+.art-body ul {
+  list-style:none; padding:0; margin:0 0 18px;
+  display:flex; flex-direction:column; gap:7px;
+}
+.art-body ul li {
+  font-size:16px; color:var(--text-secondary); padding-left:18px; position:relative; line-height:1.7;
+}
+.art-body ul li::before { content:'—'; position:absolute; left:0; color:var(--green-main); font-weight:700; }
+.art-tao { margin:18px 0 24px; border:1px solid var(--border); border-radius:10px; overflow:hidden; }
+.art-tao-row { display:flex; align-items:flex-start; gap:12px; padding:13px 18px; }
+.art-tao-row + .art-tao-row { border-top:1px solid var(--border); }
+.art-tao-emoji { font-size:16px; flex-shrink:0; line-height:1.5; }
+.art-tao-right { flex:1; }
+.art-tao-head { display:flex; align-items:baseline; gap:8px; margin:0 0 3px; }
+.art-tao-key { font-size:10px; font-weight:800; letter-spacing:0.12em; text-transform:uppercase; color:var(--green-dark); }
+.art-tao-word { font-size:13.5px; font-weight:700; color:var(--text-primary); }
+.art-tao-desc { font-size:13px; line-height:1.6; color:var(--text-secondary); margin:0; }
+.art-components { margin:14px 0 0; }
+.art-components p { font-size:16px; line-height:1.75; color:var(--text-secondary); margin:0 0 10px; }
+.art-components p:last-child { margin:0; }
+.art-pullquote { margin:26px 0; padding:10px 0 10px 22px; border-left:3px solid var(--green-main); }
+.art-pullquote p {
+  font-family:'Lora',serif; font-style:italic; font-size:19px; line-height:1.7;
+  color:#475569; margin:0 !important;
+}
+.art-objections { margin:4px 0 18px; display:flex; flex-direction:column; gap:18px; }
+.art-obj-q { font-size:15.5px; font-weight:600; color:var(--text-primary); margin:0 0 4px; }
+.art-obj-a { font-size:15px; line-height:1.8; color:var(--text-secondary); margin:0; }
+
+/* ---- ILLUSTRATIONS ---- */
+.art-illus {
+  margin:28px 0;
+  border-radius:16px; overflow:hidden; background:#fdfdf8;
+  border:1px solid #e8e4d8;
+}
+.art-illus svg { display:block; width:100%; height:auto; }
+.art-illus-caption {
+  font-family:'Lora',serif; font-style:italic;
+  font-size:13px; color:#8a8070;
+  text-align:center; padding:9px 24px 12px;
+  border-top:1px solid #e8e4d8; margin:0; background:#fdfdf8;
+}
+
+.art-cta { border-top:1px solid var(--border); padding:30px 0 64px; }
+.art-cta-intro { font-size:15px; color:var(--text-secondary); line-height:1.75; margin:0 0 18px; }
+.art-cta-next {
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+  padding:16px 0; border-top:1px solid var(--border); margin-bottom:18px;
+}
+.art-cta-next-body { flex:1; min-width:0; }
+.art-cta-label {
+  font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;
+  color:var(--text-secondary); display:block; margin-bottom:4px;
+}
+.art-cta-next-title { font-size:15px; font-weight:600; color:var(--text-primary); margin:0; line-height:1.3; }
+.art-cta-btn {
+  display:inline-flex; align-items:center; padding:9px 18px;
+  background:var(--green-main); color:#fff; border-radius:var(--radius-pill);
+  font-size:13px; font-weight:600; text-decoration:none; white-space:nowrap; flex-shrink:0;
+  transition:background 0.2s;
+}
+.art-cta-btn:hover { background:var(--green-dark); }
+.art-back-bottom {
+  display:inline-flex; align-items:center; gap:6px;
+  font-size:13px; color:var(--text-secondary); text-decoration:none; transition:color 0.2s;
+}
+.art-back-bottom:hover { color:var(--green-dark); }
+
+@media (max-width:600px) {
+  .art-wrap { padding:0 18px; }
+  .art-cover { padding:20px 20px 22px; height:180px; }
+  .art-body p { font-size:16px; }
+  .art-lead { font-size:16.5px; }
+  .art-pullquote p { font-size:17px; }
+  .art-cta-next { flex-direction:column; align-items:flex-start; gap:10px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="https://www.instagram.com/vasilina_pavlovich" target="_blank" class="nav-logo">
+      <img src="../../assets/image-1.jpg" style="width:34px;height:34px;border-radius:50%;object-fit:cover;object-position:center 10%;border:2px solid var(--green-main);flex-shrink:0" alt="Василина">
+      <span class="nav-logo-text">Василина Павлович</span>
+    </a>
+    <div class="nav-links">
+      <a href="../../index.html">Главная</a>
+      <a href="../../index.html#about">Обо мне</a>
+      <a href="../../index.html#uslugi">Услуги</a>
+      <a href="../../index.html#results">Кейсы</a>
+      <a href="../../materials.html" class="active">Материалы</a>
+      <a href="../../index.html#faq">FAQ</a>
+    </div>
+    <div class="nav-right">
+      <button class="hamburger" onclick="toggleMenu()" aria-label="Меню"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="../../index.html" onclick="closeMenu()">Главная</a>
+  <a href="../../index.html#about" onclick="closeMenu()">Обо мне</a>
+  <a href="../../index.html#uslugi" onclick="closeMenu()">Услуги</a>
+  <a href="../../index.html#results" onclick="closeMenu()">Кейсы</a>
+  <a href="../../materials.html" onclick="closeMenu()">Материалы</a>
+  <a href="../../index.html#faq" onclick="closeMenu()">FAQ</a>
+  <a href="https://t.me/vasilina_pavlovich7" target="_blank" class="btn-pill btn-blue" style="margin-top:4px;justify-content:center">Написать в Telegram</a>
+</div>
+
+<div class="art-cover">
+  <span class="art-cover-badge">Start · AI-агенты</span>
+  <div class="art-cover-text">
+    <p class="art-cover-title">Что такое AI-агент</p>
+    <p class="art-cover-sub">Базовые понятия · 15 минут</p>
+  </div>
+</div>
+
+<div class="art-page">
+  <div style="border-bottom:1px solid var(--border)">
+    <div class="art-wrap">
+      <a href="index.html" class="art-back">← Все материалы</a>
+      <nav class="art-breadcrumbs">
+        <a href="../../index.html">Главная</a>
+        <span class="art-breadcrumbs-sep">›</span>
+        <a href="../../materials.html">Материалы</a>
+        <span class="art-breadcrumbs-sep">›</span>
+        <a href="index.html">AI-агенты</a>
+        <span class="art-breadcrumbs-sep">›</span>
+        <span class="art-breadcrumbs-current">Что такое AI-агент</span>
+      </nav>
+      <header class="art-header">
+        <span class="art-badge">Бесплатно</span>
+        <h1>Что такое AI-агент и почему это следующий уровень работы с нейросетями</h1>
+        <p class="art-meta">📖 15 минут чтения&nbsp;•&nbsp;Василина Павлович</p>
+        <div class="art-lead">
+          <p>Большинство людей до сих пор используют <span class="art-term">ChatGPT</span> как умный поиск.</p>
+          <p>Но <span class="art-term">AI-агенты</span> работают иначе.</p>
+          <p>Они умеют планировать действия, пользоваться инструментами, помнить контекст и выполнять задачи самостоятельно.</p>
+          <p>За 15 минут разберёмся, как это устроено и почему именно агенты станут следующим большим этапом развития ИИ.</p>
+        </div>
+        <p class="art-target">Для тех, кто чувствует, что обычного ChatGPT уже мало и хочет понять, что будет следующим шагом.</p>
+      </header>
+    </div>
+  </div>
+
+  <div class="art-wrap">
+    <div class="art-body">
+
+      <!-- ═══ ILLUSTRATION 1: Дино смотрит на огромный вопрос ═══ -->
+      <!-- Сцена: любопытство перед чем-то большим и новым -->
+      <figure class="art-illus">
+        <svg viewBox="0 0 560 170" xmlns="http://www.w3.org/2000/svg" style="background:#fdfdf8">
+          <defs>
+            <radialGradient id="glow1" cx="65%" cy="50%" r="35%">
+              <stop offset="0%" stop-color="#dcfce7" stop-opacity="0.6"/>
+              <stop offset="100%" stop-color="#fdfdf8" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <rect width="560" height="170" fill="#fdfdf8"/>
+          <rect width="560" height="170" fill="url(#glow1)"/>
+
+          <!-- Ground line - sketchy -->
+          <path d="M 0,148 Q 140,144 280,147 Q 420,150 560,146" fill="none" stroke="#d4ccb8" stroke-width="1.5" stroke-linecap="round"/>
+
+          <!-- Dino — small, standing, looking up-right at the "?" -->
+          <g transform="translate(118,118)">
+            <!-- shadow -->
+            <ellipse cx="0" cy="32" rx="22" ry="5" fill="#e8e0cc" opacity="0.5"/>
+            <!-- tail -->
+            <path d="M -24,3 Q -42,-8 -36,16" fill="#22C55E" stroke="#1a1a14" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- body -->
+            <ellipse cx="0" cy="0" rx="23" ry="17" fill="#22C55E" stroke="#1a1a14" stroke-width="2.5"/>
+            <!-- belly patch -->
+            <ellipse cx="4" cy="3" rx="12" ry="9" fill="#4ade80" opacity="0.4"/>
+            <!-- back spike -->
+            <path d="M -4,-17 Q 0,-31 4,-17" fill="#16A34A" stroke="#1a1a14" stroke-width="1.5" stroke-linecap="round"/>
+            <!-- head — tilted slightly up -->
+            <rect x="12" y="-30" width="23" height="18" rx="6" fill="#22C55E" stroke="#1a1a14" stroke-width="2.5"/>
+            <!-- eye — looking UP (pupil at top of white) -->
+            <circle cx="27" cy="-24" r="4.5" fill="white" stroke="#1a1a14" stroke-width="1.5"/>
+            <circle cx="27" cy="-27" r="2" fill="#1a1a14"/>
+            <!-- eyebrow raised — curious -->
+            <path d="M 23,-30 Q 27,-33 31,-30" fill="none" stroke="#1a1a14" stroke-width="1.5" stroke-linecap="round"/>
+            <!-- open mouth — awe -->
+            <path d="M 19,-14 Q 25,-11 31,-15" fill="none" stroke="#1a1a14" stroke-width="1.5" stroke-linecap="round"/>
+            <ellipse cx="25" cy="-12" rx="4" ry="2.5" fill="white" stroke="none" opacity="0.6"/>
+            <!-- arm pointing up -->
+            <path d="M 14,0 Q 24,-10 28,-18" fill="none" stroke="#1a1a14" stroke-width="2.5" stroke-linecap="round"/>
+            <!-- legs -->
+            <path d="M -12,17 Q -14,28 -16,32" fill="none" stroke="#1a1a14" stroke-width="3" stroke-linecap="round"/>
+            <path d="M -16,32 Q -18,33 -10,33" fill="none" stroke="#1a1a14" stroke-width="2" stroke-linecap="round"/>
+            <path d="M 2,17 Q 2,28 2,32" fill="none" stroke="#1a1a14" stroke-width="3" stroke-linecap="round"/>
+            <path d="M 2,32 Q 0,33 8,33" fill="none" stroke="#1a1a14" stroke-width="2" stroke-linecap="round"/>
+          </g>
+
+          <!-- Giant floating "?" — the unknown -->
+          <!-- outer glow rings -->
+          <circle cx="360" cy="80" r="62" fill="#dcfce7" opacity="0.25"/>
+          <circle cx="360" cy="80" r="48" fill="#dcfce7" opacity="0.3"/>
+          <!-- question mark — hand-drawn feel with path -->
+          <path d="M 333,50 Q 333,28 360,26 Q 387,28 387,50 Q 387,68 360,75 L 360,88"
+                fill="none" stroke="#1a1a14" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="360" cy="100" r="4.5" fill="#1a1a14"/>
+          <!-- sparkles around "?" -->
+          <path d="M 408,30 L 413,22 L 418,30 L 413,38 Z" fill="#fde68a" stroke="#f59e0b" stroke-width="1" stroke-linejoin="round"/>
+          <path d="M 296,26 L 300,20 L 304,26 L 300,32 Z" fill="#fde68a" stroke="#f59e0b" stroke-width="1" stroke-linejoin="round"/>
+          <circle cx="420" cy="60" r="3" fill="#86efac"/>
+          <circle cx="300" cy="110" r="2.5" fill="#86efac"/>
+          <circle cx="430" cy="110" r="2" fill="#fde68a"/>
+          <!-- small stars -->
+          <text x="450" y="45" font-size="14" fill="#86efac" opacity="0.7">✦</text>
+          <text x="286" y="50" font-size="10" fill="#fde68a" opacity="0.8">✦</text>
+          <text x="455" y="130" font-size="8" fill="#86efac" opacity="0.6">✦</text>
+
+          <!-- Dino's thought trail (dots) toward the "?" -->
+          <circle cx="165" cy="85" r="2.5" fill="#16A34A" opacity="0.4"/>
+          <circle cx="190" cy="72" r="2" fill="#16A34A" opacity="0.35"/>
+          <circle cx="218" cy="60" r="1.5" fill="#16A34A" opacity="0.25"/>
+        </svg>
+        <figcaption class="art-illus-caption">Кажется, все говорят про AI. Но с чего вообще начать?</figcaption>
+      </figure>
+
+      <h2>Чем агент отличается от ChatGPT</h2>
+
+      <p><span class="art-term">ChatGPT</span> — это инструмент диалога. Ты задаёшь вопрос — он отвечает. Каждый раз ты участвуешь в процессе: формулируешь запрос, оцениваешь ответ, задаёшь следующий вопрос.</p>
+
+      <p><span class="art-term">AI-агент</span> — это инструмент действия. Ты ставишь задачу — он разбивает её на шаги, выполняет каждый шаг, проверяет результат и идёт дальше. Самостоятельно.</p>
+
+      <div class="art-pullquote">
+        <p>ChatGPT отвечает на вопросы. Агент выполняет задачи.</p>
+      </div>
+
+      <p>Представь умного друга, который разбирается во всём. Раньше ты мог только спрашивать его совета. Агент — это как если бы этот друг сел за твой компьютер и сделал всё сам.</p>
+
+      <p>ChatGPT — это консультант. Ты звонишь с вопросом, получаешь совет и идёшь делать сам. Агент — это сотрудник. Ты ставишь задачу и уходишь на встречу.</p>
+
+      <div class="art-pullquote">
+        <p>Ты дала задачу — и ушла. Он остался.</p>
+      </div>
+
+      <!-- ═══ ILLUSTRATION 2: Дино уходит с кофе, агент остаётся работать ═══ -->
+      <!-- Сцена: доверие. Можно идти — он справится -->
+      <figure class="art-illus">
+        <svg viewBox="0 0 560 170" xmlns="http://www.w3.org/2000/svg" style="background:#fdfdf8">
+          <rect width="560" height="170" fill="#fdfdf8"/>
+
+          <!-- Ground -->
+          <path d="M 0,150 Q 280,146 560,150" fill="none" stroke="#d4ccb8" stroke-width="1.5" stroke-linecap="round"/>
+
+          <!-- Shadow under Dino (left, walking away) -->
+          <ellipse cx="148" cy="145" rx="24" ry="5" fill="#e0d8c4" opacity="0.5"/>
+
+          <!-- DINO — facing LEFT (mirrored), walking away with coffee -->
+          <!-- Using scale(-1,1) to flip -->
+          <g transform="translate(148,118) scale(-1,1)">
+            <!-- tail -->
+            <path d="M -24,3 Q -42,-8 -36,16" fill="#22C55E" stroke="#1a1a14" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- body -->
+            <ellipse cx="0" cy="0" rx="23" ry="17" fill="#22C55E" stroke="#1a1a14" stroke-width="2.5"/>
+            <ellipse cx="4" cy="3" rx="12" ry="9" fill="#4ade80" opacity="0.4"/>
+            <!-- spike -->
+            <path d="M -4,-17 Q 0,-31 4,-17" fill="#16A34A" stroke="#1a1a14" stroke-width="1.5" stroke-linecap="round"/>
+            <!-- head -->
+            <rect x="12" y="-30" width="23" height="18" rx="6" fill="#22C55E" stroke="#1a1a14" stroke-width="2.5"/>
+            <!-- eye — relaxed/happy, looking back slightly -->
+            <circle cx="27" cy="-24" r="4.5" fill="white" stroke="#1a1a14" stroke-width="1.5"/>
+            <circle cx="25" cy="-23" r="2" fill="#1a1a14"/>
+            <!-- smile -->
+            <path d="M 19,-14 Q 25,-10 31,-13" fill="none" stroke="#1a1a14" stroke-width="1.5" stroke-linecap="round"/>
+            <!-- arm holding coffee cup -->
+            <path d="M 14,0 Q 14,8 16,10" fill="none" stroke="#1a1a14" stroke-width="2.5" stroke-linecap="round"/>
+            <!-- coffee cup -->
+            <rect x="10" y="10" width="12" height="14" rx="3" fill="white" stroke="#1a1a14" stroke-width="1.5"/>
+            <path d="M 22,14 Q 27,14 27,18 Q 27,22 22,22" fill="none" stroke="#1a1a14" stroke-width="1.5" stroke-linecap="round"/>
+            <!-- steam -->
+            <path d="M 14,8 Q 12,4 14,1" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M 18,7 Q 16,3 18,0" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-linecap="round"/>
+            <!-- walking legs — mid-stride -->
+            <path d="M -12,17 Q -16,28 -20,32" fill="none" stroke="#1a1a14" stroke-width="3" stroke-linecap="round"/>
+            <path d="M -20,32 Q -22,33 -14,33" fill="none" stroke="#1a1a14" stroke-width="2" stroke-linecap="round"/>
+            <path d="M 2,17 Q 4,26 3,31" fill="none" stroke="#1a1a14" stroke-width="3" stroke-linecap="round"/>
+            <path d="M 3,31 Q 2,33 10,32" fill="none" stroke="#1a1a14" stroke-width="2" stroke-linecap="round"/>
+          </g>
+
+          <!-- Footprints trailing behind Dino -->
+          <ellipse cx="188" cy="148" rx="4" ry="2.5" fill="#d4ccb8" transform="rotate(-15,188,148)"/>
+          <ellipse cx="198" cy="145" rx="4" ry="2.5" fill="#d4ccb8" transform="rotate(10,198,145)"/>
+          <ellipse cx="212" cy="148" rx="3.5" ry="2" fill="#d4ccb8" transform="rotate(-10,212,148)"/>
+          <ellipse cx="222" cy="145" rx="3.5" ry="2" fill="#d4ccb8" transform="rotate(15,222,145)"/>
+
+          <!-- Robot/Agent — at desk on the right, working -->
+          <!-- Desk -->
+          <rect x="320" y="125" width="180" height="10" rx="4" fill="#d4ccb8" stroke="#1a1a14" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M 340,135 L 340,148" stroke="#1a1a14" stroke-width="2" stroke-linecap="round"/>
+          <path d="M 480,135 L 480,148" stroke="#1a1a14" stroke-width="2" stroke-linecap="round"/>
+
+          <!-- Robot shadow -->
+          <ellipse cx="410" cy="126" rx="28" ry="5" fill="#e0d8c4" opacity="0.5"/>
+
+          <!-- Robot body (simple, friendly) -->
+          <g transform="translate(410,90)">
+            <!-- body -->
+            <rect x="-20" y="-8" width="40" height="36" rx="8" fill="#e8f4ff" stroke="#1a1a14" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- belly panel -->
+            <rect x="-12" y="2" width="24" height="16" rx="4" fill="white" stroke="#c7d8e8" stroke-width="1"/>
+            <!-- panel glow -->
+            <rect x="-8" y="5" width="8" height="5" rx="2" fill="#86efac"/>
+            <rect x="2" y="5" width="8" height="5" rx="2" fill="#86efac" opacity="0.5"/>
+            <rect x="-8" y="13" width="18" height="3" rx="1.5" fill="#bfdbfe"/>
+            <!-- head -->
+            <rect x="-16" y="-34" width="32" height="26" rx="8" fill="#e8f4ff" stroke="#1a1a14" stroke-width="2" stroke-linecap="round"/>
+            <!-- eyes — happy, working -->
+            <rect x="-10" y="-28" rx="2" width="7" height="7" fill="#22C55E"/>
+            <rect x="3" y="-28" rx="2" width="7" height="7" fill="#22C55E"/>
+            <!-- mouth — slight smile -->
+            <path d="M -6,-14 Q 0,-11 6,-14" fill="none" stroke="#1a1a14" stroke-width="1.5" stroke-linecap="round"/>
+            <!-- antenna -->
+            <path d="M 0,-34 Q -2,-44 0,-48" fill="none" stroke="#1a1a14" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="0" cy="-50" r="4" fill="#fde68a" stroke="#f59e0b" stroke-width="1.5"/>
+            <!-- arms — one typing -->
+            <path d="M -20,2 Q -32,8 -34,16" fill="none" stroke="#1a1a14" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M 20,2 Q 32,8 34,14" fill="none" stroke="#1a1a14" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+
+          <!-- Laptop on desk -->
+          <rect x="366" y="102" width="88" height="24" rx="4" fill="white" stroke="#1a1a14" stroke-width="1.5"/>
+          <rect x="360" y="124" width="100" height="6" rx="3" fill="#d4ccb8" stroke="#1a1a14" stroke-width="1.5"/>
+          <!-- screen glow/content -->
+          <rect x="372" y="106" width="72" height="15" rx="2" fill="#dcfce7"/>
+          <!-- tiny progress bar -->
+          <rect x="375" y="110" width="42" height="4" rx="2" fill="#22C55E"/>
+          <rect x="375" y="110" width="66" height="4" rx="2" fill="none" stroke="#86efac" stroke-width="1"/>
+
+          <!-- Waving hand from robot to Dino -->
+          <path d="M 376,74 Q 310,65 270,95" fill="none" stroke="#e2e8f0" stroke-width="1.5" stroke-dasharray="4,4" stroke-linecap="round"/>
+        </svg>
+        <figcaption class="art-illus-caption">Ты ушла. Он остался.</figcaption>
+      </figure>
+
+      <hr class="art-divider">
+
+      <h2>Как работает агент</h2>
+
+      <p>Любой <span class="art-term">AI-агент</span> работает по одному принципу — циклу из трёх шагов. Понять его — значит понять, как агент вообще может «думать» и «делать».</p>
+
+      <div class="art-tao">
+        <div class="art-tao-row">
+          <span class="art-tao-emoji">🧠</span>
+          <div class="art-tao-right">
+            <div class="art-tao-head">
+              <span class="art-tao-key">Think</span>
+              <span class="art-tao-word">Думает</span>
+            </div>
+            <p class="art-tao-desc">Получает задачу, анализирует её, строит план и выбирает инструменты</p>
+          </div>
+        </div>
+        <div class="art-tao-row">
+          <span class="art-tao-emoji">⚡</span>
+          <div class="art-tao-right">
+            <div class="art-tao-head">
+              <span class="art-tao-key">Act</span>
+              <span class="art-tao-word">Делает</span>
+            </div>
+            <p class="art-tao-desc">Выполняет один конкретный шаг — ищет, пишет, отправляет, записывает</p>
+          </div>
+        </div>
+        <div class="art-tao-row">
+          <span class="art-tao-emoji">👀</span>
+          <div class="art-tao-right">
+            <div class="art-tao-head">
+              <span class="art-tao-key">Observe</span>
+              <span class="art-tao-word">Проверяет результат</span>
+            </div>
+            <p class="art-tao-desc">Смотрит на то, что получилось, и решает, каким будет следующий шаг</p>
+          </div>
+        </div>
+      </div>
+
+      <p>Этот цикл повторяется снова и снова — пока задача не будет выполнена. Именно это делает агента агентом: он не останавливается после первого ответа, а продолжает работать, пока не достигнет цели.</p>
+
+      <!-- ═══ ILLUSTRATION 3: Дино в движении — ощущение потока и действия ═══ -->
+      <!-- Сцена: энергия, момент, всё в движении -->
+      <figure class="art-illus">
+        <svg viewBox="0 0 560 170" xmlns="http://www.w3.org/2000/svg" style="background:#fdfdf8">
+          <defs>
+            <radialGradient id="glow3" cx="50%" cy="60%" r="40%">
+              <stop offset="0%" stop-color="#dcfce7" stop-opacity="0.4"/>
+              <stop offset="100%" stop-color="#fdfdf8" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <rect width="560" height="170" fill="#fdfdf8"/>
+          <rect width="560" height="170" fill="url(#glow3)"/>
+
+          <!-- Ground -->
+          <path d="M 0,152 Q 280,148 560,152" fill="none" stroke="#d4ccb8" stroke-width="1.5" stroke-linecap="round"/>
+
+          <!-- Motion trail / speed whooshes -->
+          <path d="M 60,90 Q 120,82 180,88" fill="none" stroke="#d4e8d0" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+          <path d="M 40,105 Q 110,98 185,103" fill="none" stroke="#d4e8d0" stroke-width="4" stroke-linecap="round" opacity="0.5"/>
+          <path d="M 55,120 Q 125,114 188,119" fill="none" stroke="#d4e8d0" stroke-width="3" stroke-linecap="round" opacity="0.4"/>
+          <path d="M 70,75 Q 130,68 183,73" fill="none" stroke="#d4e8d0" stroke-width="2" stroke-linecap="round" opacity="0.3"/>
+
+          <!-- Shadow -->
+          <ellipse cx="310" cy="148" rx="36" ry="6" fill="#e0d8c4" opacity="0.45"/>
+
+          <!-- DINO — running, mid-stride, leaning forward -->
+          <g transform="translate(305,112)">
+            <!-- tail — swept back from speed -->
+            <path d="M -26,2 Q -52,-14 -44,10" fill="#22C55E" stroke="#1a1a14" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- body — leaning forward ~15deg -->
+            <ellipse cx="0" cy="0" rx="23" ry="16" fill="#22C55E" stroke="#1a1a14" stroke-width="2.5" transform="rotate(-10)"/>
+            <ellipse cx="3" cy="0" rx="12" ry="8" fill="#4ade80" opacity="0.4" transform="rotate(-10)"/>
+            <!-- spike — swept back -->
+            <path d="M -8,-15 Q -6,-29 -2,-16" fill="#16A34A" stroke="#1a1a14" stroke-width="1.5" stroke-linecap="round" transform="rotate(-10)"/>
+            <!-- head — leaning forward -->
+            <g transform="rotate(-12)">
+              <rect x="14" y="-28" width="24" height="18" rx="6" fill="#22C55E" stroke="#1a1a14" stroke-width="2.5"/>
+              <!-- eye — focused/excited -->
+              <circle cx="29" cy="-22" r="4.5" fill="white" stroke="#1a1a14" stroke-width="1.5"/>
+              <circle cx="31" cy="-22" r="2" fill="#1a1a14"/>
+              <!-- determined mouth -->
+              <path d="M 20,-12 L 32,-12" fill="none" stroke="#1a1a14" stroke-width="2" stroke-linecap="round"/>
+            </g>
+            <!-- arms stretched forward & back — running -->
+            <path d="M 12,-2 Q 30,-12 38,-18" fill="none" stroke="#1a1a14" stroke-width="2.5" stroke-linecap="round" transform="rotate(-10)"/>
+            <path d="M -4,4 Q -20,14 -26,20" fill="none" stroke="#1a1a14" stroke-width="2.5" stroke-linecap="round" transform="rotate(-10)"/>
+            <!-- legs — running stride -->
+            <path d="M -6,14 Q -2,26 4,34" fill="none" stroke="#1a1a14" stroke-width="3" stroke-linecap="round"/>
+            <path d="M 4,34 Q 6,36 14,32" fill="none" stroke="#1a1a14" stroke-width="2" stroke-linecap="round"/>
+            <path d="M 6,14 Q 16,22 10,34" fill="none" stroke="#1a1a14" stroke-width="3" stroke-linecap="round"/>
+            <path d="M 10,34 Q 14,38 20,32" fill="none" stroke="#1a1a14" stroke-width="2" stroke-linecap="round"/>
+          </g>
+
+          <!-- Action sparks/energy in front of Dino -->
+          <path d="M 356,95 L 364,84 L 368,95 L 376,82 L 378,95" fill="none" stroke="#22C55E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- floating checkmarks in trail -->
+          <path d="M 420,76 L 427,84 L 442,64" fill="none" stroke="#22C55E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/>
+          <path d="M 460,95 L 466,102 L 478,86" fill="none" stroke="#22C55E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
+          <path d="M 498,112 L 503,118 L 514,104" fill="none" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.35"/>
+          <!-- small dots / steps ahead -->
+          <circle cx="390" cy="148" r="3" fill="#86efac"/>
+          <circle cx="420" cy="146" r="3" fill="#86efac" opacity="0.7"/>
+          <circle cx="450" cy="148" r="3" fill="#86efac" opacity="0.5"/>
+          <circle cx="480" cy="146" r="3" fill="#86efac" opacity="0.35"/>
+          <circle cx="510" cy="148" r="3" fill="#86efac" opacity="0.2"/>
+        </svg>
+        <figcaption class="art-illus-caption">Думает. Делает. Проверяет. Снова.</figcaption>
+      </figure>
+
+      <hr class="art-divider">
+
+      <h2>Из чего состоит агент</h2>
+
+      <p>Агент — это система из нескольких взаимосвязанных частей. Убери любую — и он перестаёт работать как агент.</p>
+
+      <div class="art-components">
+        <p>🧠 <span class="art-term">Мозг</span> — языковая модель (GPT-4, Claude и другие). Ядро агента: способность понимать задачу, рассуждать и принимать решения.</p>
+        <p>❤️ <span class="art-term">Душа</span> — системный промпт. Инструкции, которые задают характер, роль и правила поведения агента.</p>
+        <p>💾 <span class="art-term">Память</span> — история диалогов и данные о пользователе. Делает агента персональным: он помнит контекст и не начинает каждый раз с нуля.</p>
+        <p>🛠️ <span class="art-term">Руки</span> — инструменты. Поиск в интернете, отправка email, работа с файлами, API. Без них агент может только думать — не действовать.</p>
+        <p>🎯 <span class="art-term">Скиллы</span> — специализированные модули под конкретные задачи: анализ изображений, генерация кода, работа с определённым сервисом.</p>
+      </div>
+
+      <!-- ═══ ILLUSTRATION 4: Дино — герой, вокруг него его «суперсилы» ═══ -->
+      <!-- Сцена: ощущение полной экипировки, готовности, силы -->
+      <figure class="art-illus">
+        <svg viewBox="0 0 560 170" xmlns="http://www.w3.org/2000/svg" style="background:#fdfdf8">
+          <defs>
+            <radialGradient id="glow4" cx="50%" cy="55%" r="42%">
+              <stop offset="0%" stop-color="#dcfce7" stop-opacity="0.5"/>
+              <stop offset="100%" stop-color="#fdfdf8" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <rect width="560" height="170" fill="#fdfdf8"/>
+          <rect width="560" height="170" fill="url(#glow4)"/>
+
+          <!-- Orbit ring (subtle) -->
+          <ellipse cx="275" cy="100" rx="200" ry="58" fill="none" stroke="#e8e0cc" stroke-width="1.5" stroke-dasharray="6,5"/>
+
+          <!-- Ground -->
+          <path d="M 0,155 Q 280,150 560,155" fill="none" stroke="#d4ccb8" stroke-width="1.5" stroke-linecap="round"/>
+          <!-- Shadow -->
+          <ellipse cx="275" cy="151" rx="28" ry="5" fill="#e0d8c4" opacity="0.5"/>
+
+          <!-- DINO center — hero pose, arms wide, proud -->
+          <g transform="translate(275,112)">
+            <path d="M -24,3 Q -42,-8 -36,16" fill="#22C55E" stroke="#1a1a14" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <ellipse cx="0" cy="0" rx="23" ry="17" fill="#22C55E" stroke="#1a1a14" stroke-width="2.5"/>
+            <ellipse cx="4" cy="3" rx="12" ry="9" fill="#4ade80" opacity="0.4"/>
+            <path d="M -4,-17 Q 0,-31 4,-17" fill="#16A34A" stroke="#1a1a14" stroke-width="1.5" stroke-linecap="round"/>
+            <rect x="12" y="-30" width="23" height="18" rx="6" fill="#22C55E" stroke="#1a1a14" stroke-width="2.5"/>
+            <!-- eyes — happy, confident -->
+            <circle cx="27" cy="-24" r="4.5" fill="white" stroke="#1a1a14" stroke-width="1.5"/>
+            <circle cx="28" cy="-23" r="2" fill="#1a1a14"/>
+            <!-- big happy smile -->
+            <path d="M 18,-13 Q 25,-8 32,-12" fill="none" stroke="#1a1a14" stroke-width="2" stroke-linecap="round"/>
+            <!-- arms wide open — hero pose -->
+            <path d="M 14,0 Q 32,-10 42,-18" fill="none" stroke="#1a1a14" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M -4,4 Q -26,-2 -38,-8" fill="none" stroke="#1a1a14" stroke-width="2.5" stroke-linecap="round"/>
+            <!-- legs -->
+            <path d="M -12,17 Q -14,28 -16,32" fill="none" stroke="#1a1a14" stroke-width="3" stroke-linecap="round"/>
+            <path d="M -16,32 Q -18,33 -10,33" fill="none" stroke="#1a1a14" stroke-width="2" stroke-linecap="round"/>
+            <path d="M 2,17 Q 2,28 2,32" fill="none" stroke="#1a1a14" stroke-width="3" stroke-linecap="round"/>
+            <path d="M 2,32 Q 0,33 8,33" fill="none" stroke="#1a1a14" stroke-width="2" stroke-linecap="round"/>
+          </g>
+
+          <!-- Floating items orbiting Dino — hand-drawn doodle style -->
+          <!-- 🧠 Brain — top center -->
+          <g transform="translate(275,28)">
+            <circle cx="0" cy="0" r="16" fill="#fef9c3" stroke="#f59e0b" stroke-width="1.5"/>
+            <path d="M -6,-4 Q -8,-10 -3,-10 Q 0,-12 3,-10 Q 8,-10 6,-4" fill="none" stroke="#1a1a14" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M -6,-4 Q -8,2 -4,6 Q 0,8 4,6 Q 8,2 6,-4" fill="none" stroke="#1a1a14" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M 0,-10 L 0,6" fill="none" stroke="#1a1a14" stroke-width="1" stroke-dasharray="2,2"/>
+          </g>
+          <!-- ❤️ Heart — top left -->
+          <g transform="translate(100,48)">
+            <circle cx="0" cy="0" r="16" fill="#fce7f3" stroke="#ec4899" stroke-width="1.5"/>
+            <path d="M 0,7 Q -10,-2 -8,-8 Q -6,-14 0,-8 Q 6,-14 8,-8 Q 10,-2 0,7 Z" fill="#f9a8d4" stroke="#1a1a14" stroke-width="1.5" stroke-linejoin="round"/>
+          </g>
+          <!-- 💾 Memory — top right -->
+          <g transform="translate(450,48)">
+            <circle cx="0" cy="0" r="16" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5"/>
+            <rect x="-8" y="-9" width="16" height="18" rx="2" fill="white" stroke="#1a1a14" stroke-width="1.5"/>
+            <rect x="-4" y="-9" width="8" height="6" rx="1" fill="#bfdbfe" stroke="#1a1a14" stroke-width="1"/>
+            <line x1="-6" y1="2" x2="6" y2="2" stroke="#1a1a14" stroke-width="1" stroke-linecap="round"/>
+            <line x1="-6" y1="5" x2="4" y2="5" stroke="#1a1a14" stroke-width="1" stroke-linecap="round"/>
+          </g>
+          <!-- 🛠️ Wrench — bottom left -->
+          <g transform="translate(100,148)">
+            <circle cx="0" cy="0" r="16" fill="#f0fdf4" stroke="#22C55E" stroke-width="1.5"/>
+            <path d="M -4,-8 Q -8,-6 -8,-2 Q -8,2 -4,4 L 6,10 Q 8,12 6,14 Q 4,16 2,14 L -8,4 Q -10,2 -8,-4 Q -6,-10 0,-12 Q 4,-12 4,-8 Z" fill="#86efac" stroke="#1a1a14" stroke-width="1.5" stroke-linejoin="round"/>
+          </g>
+          <!-- ⭐ Star — bottom right -->
+          <g transform="translate(450,148)">
+            <circle cx="0" cy="0" r="16" fill="#fefce8" stroke="#eab308" stroke-width="1.5"/>
+            <path d="M 0,-10 L 2.9,-4 L 9.5,-3.1 L 4.8,1.5 L 5.9,8.1 L 0,5 L -5.9,8.1 L -4.8,1.5 L -9.5,-3.1 L -2.9,-4 Z" fill="#fde68a" stroke="#1a1a14" stroke-width="1.5" stroke-linejoin="round"/>
+          </g>
+
+          <!-- Connecting dashes from Dino to each item -->
+          <line x1="275" y1="82" x2="275" y2="44" stroke="#d4ccb8" stroke-width="1" stroke-dasharray="3,3"/>
+          <line x1="254" y1="88" x2="116" y2="64" stroke="#d4ccb8" stroke-width="1" stroke-dasharray="3,3"/>
+          <line x1="296" y1="88" x2="434" y2="64" stroke="#d4ccb8" stroke-width="1" stroke-dasharray="3,3"/>
+          <line x1="256" y1="135" x2="116" y2="135" stroke="#d4ccb8" stroke-width="1" stroke-dasharray="3,3"/>
+          <line x1="294" y1="135" x2="434" y2="135" stroke="#d4ccb8" stroke-width="1" stroke-dasharray="3,3"/>
+        </svg>
+        <figcaption class="art-illus-caption">Убери любую часть — и всё рассыплется.</figcaption>
+      </figure>
+
+      <hr class="art-divider">
+
+      <h2>Какие задачи может выполнять агент</h2>
+
+      <p>Агент полезен везде, где есть повторяющийся процесс с несколькими шагами и понятным результатом. Несколько примеров из реальной практики:</p>
+
+      <ul>
+        <li>Отвечать на сообщения клиентов в Telegram — по заданному сценарию, круглосуточно</li>
+        <li>Мониторить почту и уведомлять о важных письмах</li>
+        <li>Собирать данные с сайтов и записывать в таблицу</li>
+        <li>Публиковать контент в соцсетях по расписанию</li>
+        <li>Обрабатывать входящие заявки и отправлять первичные ответы</li>
+        <li>Анализировать отчёты и готовить краткое резюме</li>
+        <li>Искать информацию по теме и структурировать её в документ</li>
+      </ul>
+
+      <div class="art-pullquote">
+        <p>Если задачу можно описать как последовательность шагов с понятным результатом — агент справится.</p>
+      </div>
+
+      <p>Но агенты работают не только с рабочими задачами. Их можно направить на личные цели: составить план на год, отслеживать прогресс, напоминать о важном.</p>
+
+      <!-- ═══ ILLUSTRATION 5: Дино смотрит на звезду — мечта и горизонт ═══ -->
+      <!-- Сцена: Дино лежит на холме, смотрит в небо на большую звезду -->
+      <figure class="art-illus">
+        <svg viewBox="0 0 560 170" xmlns="http://www.w3.org/2000/svg" style="background:#fdfdf8">
+          <defs>
+            <radialGradient id="sky5" cx="72%" cy="30%" r="50%">
+              <stop offset="0%" stop-color="#fffbeb" stop-opacity="0.8"/>
+              <stop offset="100%" stop-color="#fdfdf8" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <rect width="560" height="170" fill="#fdfdf8"/>
+          <rect width="560" height="170" fill="url(#sky5)"/>
+
+          <!-- Hill -->
+          <path d="M -10,170 Q 100,100 260,130 Q 380,155 570,120 L 570,170 Z" fill="#eef5e8" stroke="#c8d8b8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+          <!-- Small flowers / grass on hill -->
+          <circle cx="200" cy="140" r="2.5" fill="#86efac"/>
+          <circle cx="220" cy="134" r="2" fill="#fde68a"/>
+          <circle cx="236" cy="138" r="2.5" fill="#86efac"/>
+          <path d="M 200,143 L 200,150" stroke="#16A34A" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M 220,137 L 220,144" stroke="#16A34A" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M 236,141 L 236,148" stroke="#16A34A" stroke-width="1.5" stroke-linecap="round"/>
+
+          <!-- DINO — lying on back, looking up dreamily -->
+          <g transform="translate(158,128)">
+            <!-- body horizontal (lying on back) -->
+            <ellipse cx="0" cy="0" rx="40" ry="15" fill="#22C55E" stroke="#1a1a14" stroke-width="2.5" transform="rotate(5)"/>
+            <ellipse cx="4" cy="-2" rx="22" ry="8" fill="#4ade80" opacity="0.35" transform="rotate(5)"/>
+            <!-- tail (right side) -->
+            <path d="M 40,5 Q 58,-2 52,14" fill="#22C55E" stroke="#1a1a14" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" transform="rotate(5)"/>
+            <!-- spike (on top, upward) -->
+            <path d="M -5,-14 Q -2,-26 2,-14" fill="#16A34A" stroke="#1a1a14" stroke-width="1.5" stroke-linecap="round" transform="rotate(5)"/>
+            <!-- head (left side, looking up) -->
+            <rect x="-60" y="-18" width="24" height="18" rx="6" fill="#22C55E" stroke="#1a1a14" stroke-width="2.5" transform="rotate(5)"/>
+            <!-- eyes — dreamy, looking up at star -->
+            <circle cx="-50" cy="-11" r="4.5" fill="white" stroke="#1a1a14" stroke-width="1.5" transform="rotate(5)"/>
+            <circle cx="-50" cy="-14" r="2" fill="#1a1a14" transform="rotate(5)"/>
+            <!-- dreamy smile -->
+            <path d="M -57,-5 Q -52,-2 -47,-5" fill="none" stroke="#1a1a14" stroke-width="1.5" stroke-linecap="round" transform="rotate(5)"/>
+            <!-- small hearts/sparkles from eyes — dreaming -->
+            <path d="M -52,-19 Q -56,-22 -54,-25 Q -52,-28 -50,-25 Q -48,-28 -46,-25 Q -44,-22 -48,-19 Z" fill="#f9a8d4" stroke="#1a1a14" stroke-width="1" stroke-linejoin="round" transform="rotate(5)"/>
+            <!-- paws up (relaxed on grass) -->
+            <path d="M -18,-14 Q -20,-22 -18,-28" fill="none" stroke="#1a1a14" stroke-width="2.5" stroke-linecap="round" transform="rotate(5)"/>
+            <path d="M 8,-14 Q 10,-22 8,-26" fill="none" stroke="#1a1a14" stroke-width="2.5" stroke-linecap="round" transform="rotate(5)"/>
+          </g>
+
+          <!-- BIG STAR in sky -->
+          <g transform="translate(390,55)">
+            <!-- star glow -->
+            <circle cx="0" cy="0" r="36" fill="#fef9c3" opacity="0.3"/>
+            <circle cx="0" cy="0" r="24" fill="#fef9c3" opacity="0.4"/>
+            <!-- star shape -->
+            <path d="M 0,-20 L 5.5,-7.5 L 20,-6.2 L 9,4 L 12,18 L 0,11 L -12,18 L -9,4 L -20,-6.2 L -5.5,-7.5 Z" fill="#fde68a" stroke="#f59e0b" stroke-width="2" stroke-linejoin="round"/>
+            <!-- shine lines -->
+            <line x1="0" y1="-28" x2="0" y2="-36" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+            <line x1="28" y1="0" x2="36" y2="0" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+            <line x1="0" y1="28" x2="0" y2="36" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+            <line x1="-28" y1="0" x2="-36" y2="0" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+            <line x1="20" y1="-20" x2="26" y2="-26" stroke="#fbbf24" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+            <line x1="-20" y1="-20" x2="-26" y2="-26" stroke="#fbbf24" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+          </g>
+
+          <!-- Smaller stars -->
+          <circle cx="460" cy="25" r="2.5" fill="#fde68a"/>
+          <circle cx="480" cy="40" r="1.5" fill="#fde68a" opacity="0.6"/>
+          <path d="M 310,35 L 312,28 L 314,35 L 307,31 L 317,31 Z" fill="#fde68a" opacity="0.5" stroke="none"/>
+          <path d="M 475,70 L 477,64 L 479,70 L 473,67 L 481,67 Z" fill="#fde68a" opacity="0.4" stroke="none"/>
+
+          <!-- Gaze line from Dino eyes to star — subtle dotted -->
+          <path d="M 108,113 Q 250,50 358,58" fill="none" stroke="#fde68a" stroke-width="1" stroke-dasharray="3,4" opacity="0.4"/>
+        </svg>
+        <figcaption class="art-illus-caption">Агент может работать не только с задачами, но и с целями.</figcaption>
+      </figure>
+
+      <hr class="art-divider">
+
+      <h2>Три мысли, которые тебя остановят</h2>
+
+      <p>Почти у всех, кто впервые слышит про агентов, возникают одни и те же сомнения. Разберём их честно.</p>
+
+      <div class="art-objections">
+        <div>
+          <p class="art-obj-q">«Это слишком технически сложно для меня»</p>
+          <p class="art-obj-a">Сегодня агентов собирают в визуальных конструкторах — <span class="art-term">Make</span>, <span class="art-term">n8n</span>, <span class="art-term">Flowise</span>. Никакого программирования. Если ты умеешь пользоваться Google Таблицами — ты справишься с базовым агентом.</p>
+        </div>
+        <div>
+          <p class="art-obj-q">«Это нужно только разработчикам»</p>
+          <p class="art-obj-a">Агентов активно используют маркетологи, редакторы, HR-специалисты, предприниматели. Везде, где есть повторяющаяся задача — есть место для агента.</p>
+        </div>
+        <div>
+          <p class="art-obj-q">«Я не понимаю, как это применить к себе»</p>
+          <p class="art-obj-a">Ответь на один вопрос: есть ли в твоей работе задача, которую ты делаешь снова и снова каждую неделю? Скорее всего — да. Именно её и может взять на себя агент.</p>
+        </div>
+      </div>
+
+      <!-- ═══ ILLUSTRATION 6: Дино спит, агент работает ночью ═══ -->
+      <!-- Сцена: уютная ночь, Дино в кровати, маленький робот тихо работает -->
+      <figure class="art-illus">
+        <svg viewBox="0 0 560 170" xmlns="http://www.w3.org/2000/svg" style="background:#fdfdf8">
+          <defs>
+            <radialGradient id="night6" cx="80%" cy="20%" r="40%">
+              <stop offset="0%" stop-color="#eff6ff" stop-opacity="0.5"/>
+              <stop offset="100%" stop-color="#fdfdf8" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <rect width="560" height="170" fill="#fdfdf8"/>
+          <rect width="560" height="170" fill="url(#night6)"/>
+
+          <!-- Moon -->
+          <path d="M 478,18 Q 452,26 450,50 Q 448,74 468,82 Q 440,82 432,62 Q 424,40 438,22 Q 452,8 478,18 Z" fill="#fef9c3" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Stars -->
+          <circle cx="400" cy="22" r="2" fill="#fde68a"/>
+          <circle cx="420" cy="38" r="1.5" fill="#fde68a" opacity="0.7"/>
+          <circle cx="510" cy="30" r="2.5" fill="#fde68a" opacity="0.8"/>
+          <circle cx="530" cy="55" r="1.5" fill="#fde68a" opacity="0.6"/>
+          <path d="M 360,18 L 362,12 L 364,18 L 358,15 L 366,15 Z" fill="#fde68a" opacity="0.6"/>
+
+          <!-- Floor -->
+          <path d="M 0,152 Q 280,148 560,152" fill="none" stroke="#d4ccb8" stroke-width="1.5" stroke-linecap="round"/>
+
+          <!-- BED with sleeping Dino -->
+          <!-- Bed frame -->
+          <rect x="40" y="110" width="220" height="42" rx="8" fill="#f5f0e8" stroke="#1a1a14" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Headboard -->
+          <rect x="38" y="95" width="32" height="58" rx="8" fill="#e8dfc8" stroke="#1a1a14" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Pillow -->
+          <rect x="58" y="106" width="55" height="28" rx="10" fill="#fff" stroke="#1a1a14" stroke-width="1.5" stroke-linecap="round"/>
+          <!-- Blanket/duvet — sketchy rounded shape -->
+          <path d="M 108,110 Q 200,104 256,112 Q 262,118 256,134 Q 200,140 108,136 Q 96,130 96,120 Q 96,112 108,110 Z" fill="#c7e8c0" stroke="#1a1a14" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Blanket texture bumps (Dino under) -->
+          <path d="M 140,108 Q 150,100 162,108" fill="none" stroke="#86efac" stroke-width="2" stroke-linecap="round"/>
+          <path d="M 175,106 Q 188,98 200,106" fill="none" stroke="#86efac" stroke-width="2" stroke-linecap="round"/>
+
+          <!-- Dino's head poking out from blanket on pillow -->
+          <g transform="translate(88,118)">
+            <!-- head only (lying on pillow) -->
+            <rect x="-14" y="-12" width="24" height="18" rx="6" fill="#22C55E" stroke="#1a1a14" stroke-width="2.5"/>
+            <!-- closed eyes — two arcs -->
+            <path d="M -9,-6 Q -5,-3 -1,-6" fill="none" stroke="#1a1a14" stroke-width="2" stroke-linecap="round"/>
+            <path d="M 2,-6 Q 6,-3 10,-6" fill="none" stroke="#1a1a14" stroke-width="2" stroke-linecap="round"/>
+            <!-- tiny smile -->
+            <path d="M -4,2 Q 2,5 8,2" fill="none" stroke="#1a1a14" stroke-width="1.5" stroke-linecap="round"/>
+            <!-- small spike on top -->
+            <path d="M -4,-12 Q -1,-22 2,-12" fill="#16A34A" stroke="#1a1a14" stroke-width="1.5" stroke-linecap="round"/>
+          </g>
+
+          <!-- ZZZ floating up -->
+          <text x="68" y="90" font-size="12" fill="#94a3b8" font-weight="700" font-family="Georgia,serif" opacity="0.7">z</text>
+          <text x="82" y="76" font-size="16" fill="#94a3b8" font-weight="700" font-family="Georgia,serif" opacity="0.5">z</text>
+          <text x="100" y="60" font-size="20" fill="#94a3b8" font-weight="700" font-family="Georgia,serif" opacity="0.3">z</text>
+
+          <!-- Robot — on the right, working quietly at night, small and focused -->
+          <g transform="translate(410,108)">
+            <!-- body — smaller, night worker -->
+            <rect x="-16" y="-6" width="32" height="32" rx="7" fill="#e8f4ff" stroke="#1a1a14" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="-10" y="3" width="20" height="12" rx="3" fill="white" stroke="#c7d8e8" stroke-width="1"/>
+            <rect x="-7" y="6" width="7" height="4" rx="1.5" fill="#86efac"/>
+            <rect x="2" y="6" width="7" height="4" rx="1.5" fill="#86efac" opacity="0.4"/>
+            <!-- head -->
+            <rect x="-12" y="-28" width="24" height="21" rx="7" fill="#e8f4ff" stroke="#1a1a14" stroke-width="2" stroke-linecap="round"/>
+            <!-- eyes — soft/focused, not bright -->
+            <rect x="-7" y="-22" rx="2" width="5" height="5" fill="#bfdbfe"/>
+            <rect x="3" y="-22" rx="2" width="5" height="5" fill="#bfdbfe"/>
+            <!-- mouth — neutral/working -->
+            <line x1="-4" y1="-12" x2="4" y2="-12" stroke="#94a3b8" stroke-width="1.5" stroke-linecap="round"/>
+            <!-- antenna — dimmer light -->
+            <path d="M 0,-28 L 0,-36" stroke="#1a1a14" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="0" cy="-38" r="3" fill="#bfdbfe" stroke="#93c5fd" stroke-width="1.5"/>
+            <!-- arms -->
+            <path d="M -16,4 Q -26,10 -28,16" fill="none" stroke="#1a1a14" stroke-width="2" stroke-linecap="round"/>
+            <path d="M 16,4 Q 26,10 28,14" fill="none" stroke="#1a1a14" stroke-width="2" stroke-linecap="round"/>
+          </g>
+          <!-- Robot shadow -->
+          <ellipse cx="410" cy="143" rx="24" ry="5" fill="#e0d8c4" opacity="0.4"/>
+
+          <!-- Laptop glow at robot's feet (night glow from screen) -->
+          <rect x="366" y="118" width="88" height="26" rx="4" fill="white" stroke="#1a1a14" stroke-width="1.5"/>
+          <rect x="356" y="142" width="108" height="6" rx="3" fill="#d4ccb8" stroke="#1a1a14" stroke-width="1.5"/>
+          <rect x="370" y="122" width="74" height="18" rx="2" fill="#eff6ff"/>
+          <!-- screen content glow -->
+          <rect x="374" y="125" width="48" height="4" rx="2" fill="#86efac"/>
+          <rect x="374" y="132" width="30" height="4" rx="2" fill="#bfdbfe" opacity="0.8"/>
+
+          <!-- Screen glow on robot face -->
+          <rect x="358" y="80" width="104" height="40" rx="4" fill="#eff6ff" opacity="0.15"/>
+
+          <!-- Subtle "working quietly" dashes from robot -->
+          <path d="M 372,95 Q 340,82 300,88" fill="none" stroke="#e2e8f0" stroke-width="1.5" stroke-dasharray="3,4" stroke-linecap="round" opacity="0.5"/>
+        </svg>
+        <figcaption class="art-illus-caption">Пока ты отдыхаешь — агент продолжает работать.</figcaption>
+      </figure>
+
+      <hr class="art-divider">
+
+      <!-- ═══ ILLUSTRATION 7: Дино перед первым шагом ═══ -->
+      <!-- Сцена: Дино на краю, одна нога поднята, смотрит вперёд — лампочка над головой -->
+      <figure class="art-illus">
+        <svg viewBox="0 0 560 170" xmlns="http://www.w3.org/2000/svg" style="background:#fdfdf8">
+          <defs>
+            <radialGradient id="glow7" cx="45%" cy="45%" r="38%">
+              <stop offset="0%" stop-color="#fffbeb" stop-opacity="0.7"/>
+              <stop offset="100%" stop-color="#fdfdf8" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <rect width="560" height="170" fill="#fdfdf8"/>
+          <rect width="560" height="170" fill="url(#glow7)"/>
+
+          <!-- Path ahead — dotted road stretching to the right -->
+          <path d="M 240,150 Q 350,145 470,148 Q 510,148 548,146" fill="none" stroke="#d4ccb8" stroke-width="2" stroke-dasharray="10,8" stroke-linecap="round"/>
+
+          <!-- Ground under Dino -->
+          <path d="M 0,152 Q 200,148 240,150" fill="none" stroke="#d4ccb8" stroke-width="1.5" stroke-linecap="round"/>
+
+          <!-- Small horizon elements on the path -->
+          <circle cx="380" cy="143" r="3" fill="#86efac" opacity="0.6"/>
+          <circle cx="430" cy="141" r="4" fill="#fde68a" opacity="0.5"/>
+          <circle cx="490" cy="143" r="3" fill="#86efac" opacity="0.4"/>
+          <!-- tiny star at the end of the path -->
+          <path d="M 538,132 L 540,126 L 542,132 L 536,129 L 544,129 Z" fill="#fde68a" opacity="0.7"/>
+
+          <!-- Shadow -->
+          <ellipse cx="210" cy="150" rx="26" ry="5" fill="#e0d8c4" opacity="0.45"/>
+
+          <!-- DINO — one foot raised, about to step forward, excited -->
+          <g transform="translate(210,115)">
+            <!-- tail -->
+            <path d="M -24,3 Q -42,-8 -36,16" fill="#22C55E" stroke="#1a1a14" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- body -->
+            <ellipse cx="0" cy="0" rx="23" ry="17" fill="#22C55E" stroke="#1a1a14" stroke-width="2.5"/>
+            <ellipse cx="4" cy="3" rx="12" ry="9" fill="#4ade80" opacity="0.4"/>
+            <!-- spike -->
+            <path d="M -4,-17 Q 0,-31 4,-17" fill="#16A34A" stroke="#1a1a14" stroke-width="1.5" stroke-linecap="round"/>
+            <!-- head -->
+            <rect x="12" y="-30" width="23" height="18" rx="6" fill="#22C55E" stroke="#1a1a14" stroke-width="2.5"/>
+            <!-- eyes — excited, forward-looking -->
+            <circle cx="27" cy="-24" r="4.5" fill="white" stroke="#1a1a14" stroke-width="1.5"/>
+            <circle cx="29" cy="-24" r="2" fill="#1a1a14"/>
+            <!-- eyebrow up — excited -->
+            <path d="M 23,-30 Q 27,-33 31,-31" fill="none" stroke="#1a1a14" stroke-width="1.5" stroke-linecap="round"/>
+            <!-- big smile -->
+            <path d="M 18,-13 Q 25,-8 32,-12" fill="none" stroke="#1a1a14" stroke-width="2" stroke-linecap="round"/>
+            <!-- arm forward — reaching ahead -->
+            <path d="M 14,0 Q 28,-6 36,-12" fill="none" stroke="#1a1a14" stroke-width="2.5" stroke-linecap="round"/>
+            <!-- standing leg -->
+            <path d="M -10,17 Q -12,28 -14,34" fill="none" stroke="#1a1a14" stroke-width="3" stroke-linecap="round"/>
+            <path d="M -14,34 Q -16,35 -8,35" fill="none" stroke="#1a1a14" stroke-width="2" stroke-linecap="round"/>
+            <!-- raised leg — stepping forward -->
+            <path d="M 3,17 Q 10,22 14,16" fill="none" stroke="#1a1a14" stroke-width="3" stroke-linecap="round"/>
+            <path d="M 14,16 Q 20,12 24,18" fill="none" stroke="#1a1a14" stroke-width="3" stroke-linecap="round"/>
+            <path d="M 24,18 Q 28,22 22,24" fill="none" stroke="#1a1a14" stroke-width="2" stroke-linecap="round"/>
+          </g>
+
+          <!-- LIGHTBULB above Dino's head -->
+          <g transform="translate(222,46)">
+            <!-- glow aura -->
+            <circle cx="0" cy="0" r="32" fill="#fffbeb" opacity="0.5"/>
+            <circle cx="0" cy="0" r="22" fill="#fef9c3" opacity="0.6"/>
+            <!-- bulb shape -->
+            <circle cx="0" cy="-2" r="16" fill="#fef9c3" stroke="#f59e0b" stroke-width="2"/>
+            <!-- filament inside -->
+            <path d="M -5,0 Q -3,-5 0,-2 Q 3,-5 5,0" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
+            <!-- base -->
+            <rect x="-7" y="13" width="14" height="5" rx="1.5" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5"/>
+            <rect x="-5" y="18" width="10" height="4" rx="1" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1"/>
+            <!-- shine lines -->
+            <line x1="-18" y1="-10" x2="-24" y2="-16" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+            <line x1="18" y1="-10" x2="24" y2="-16" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+            <line x1="0" y1="-20" x2="0" y2="-28" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+            <line x1="-20" y1="4" x2="-28" y2="4" stroke="#fbbf24" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+            <line x1="20" y1="4" x2="28" y2="4" stroke="#fbbf24" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+          </g>
+          <!-- thin string from lightbulb base to Dino head -->
+          <line x1="222" y1="72" x2="224" y2="86" stroke="#d4ccb8" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <figcaption class="art-illus-caption">Первый шаг — самый важный.</figcaption>
+      </figure>
+
+      <h2>Что дальше</h2>
+
+      <p><span class="art-term">AI-агент</span> — это не будущее. Это уже сейчас.</p>
+
+      <p>Небольшие команды автоматизируют с помощью агентов то, на что раньше уходили часы ежедневной работы. Фрилансеры берут больше задач, потому что агенты берут на себя рутину. Предприниматели выстраивают процессы, которые работают без их постоянного участия.</p>
+
+      <div class="art-pullquote">
+        <p>Это не автоматизация ради автоматизации. Это просто другой инструмент — в тех же руках.</p>
+      </div>
+
+      <p>Ты уже умеешь работать с нейросетями. Следующий шаг — научить их работать за тебя.</p>
+
+      <p>Если после этой статьи агент всё ещё кажется чем-то сложным — у меня хорошая новость: первого можно собрать буквально за вечер. Без кода. Без технического образования. Именно этим мы займёмся в следующем материале.</p>
+
+    </div>
+
+    <div class="art-cta">
+      <p class="art-cta-intro">Понял, как работают агенты? Самое время собрать своего первого — пошагово, без написания кода.</p>
+      <div class="art-cta-next">
+        <div class="art-cta-next-body">
+          <span class="art-cta-label">Следующий материал</span>
+          <p class="art-cta-next-title">Как создать своего первого AI-агента</p>
+        </div>
+        <a href="#" class="art-cta-btn">Скоро →</a>
+      </div>
+      <a href="index.html" class="art-back-bottom">← Все материалы об AI-агентах</a>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="footer-overlay"></div>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">
+        <img src="../../assets/image-3.jpg" style="width:40px;height:40px;border-radius:50%;object-fit:cover;object-position:center 10%;border:2px solid var(--green-main)" alt="Василина">
+        <span class="footer-logo-text">Василина Павлович</span>
+      </div>
+      <div class="footer-socials">
+        <a href="https://instagram.com/vasilina_pavlovich" target="_blank" class="footer-social-link">
+          <span class="footer-soc-badge footer-soc-badge--instagram">
+            <svg class="footer-soc-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/></svg>
+          </span>
+          <span class="footer-soc-handle">@vasilina_pavlovich</span>
+        </a>
+        <a href="https://t.me/vasilina_pavlovich7" target="_blank" class="footer-social-link">
+          <span class="footer-soc-badge footer-soc-badge--telegram">
+            <svg class="footer-soc-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4 20-7z"/><path d="M22 2 11 13"/></svg>
+          </span>
+          <span class="footer-soc-handle">@vasilina_pavlovich7</span>
+        </a>
+        <a href="https://t.me/deviichnik_ai" target="_blank" class="footer-social-link">
+          <span class="footer-soc-badge footer-soc-badge--telegram">
+            <svg class="footer-soc-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4 20-7z"/><path d="M22 2 11 13"/></svg>
+          </span>
+          <span class="footer-soc-handle">@deviichnik_ai</span>
+        </a>
+        <a href="https://www.youtube.com/@ВасилинаПавлович7" target="_blank" class="footer-social-link">
+          <span class="footer-soc-badge footer-soc-badge--youtube">
+            <svg class="footer-soc-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg>
+          </span>
+          <span class="footer-soc-handle">@ВасилинаПавлович7</span>
+        </a>
+      </div>
+      <a href="https://t.me/vasilina_pavlovich7" target="_blank" class="btn-footer-cta">Связаться →</a>
+    </div>
+    <div class="footer-links-col">
+      <h4>Навигация</h4>
+      <a href="../../index.html#about">Обо мне</a>
+      <a href="../../index.html#uslugi">Услуги</a>
+      <a href="../../index.html#results">Кейсы</a>
+      <a href="../../materials.html">Материалы</a>
+      <a href="../../index.html#faq">FAQ</a>
+    </div>
+    <div class="footer-links-col">
+      <h4>Услуги</h4>
+      <a href="../../index.html#obuchenie">Обучение нейросетям</a>
+      <a href="../../index.html#biznes">AI для бизнеса</a>
+      <a href="../../index.html#kurs">Курс AI-Фриланс</a>
+    </div>
+  </div>
+  <div class="footer-bottom">Спасибо GPT и Claude за помощь в создании этого сайта 💚 · © 2026 Василина Павлович · @vasilina_pavlovich7</div>
+</footer>
+
+<script>
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open')}
+function closeMenu(){document.getElementById('mobileMenu').classList.remove('open')}
+</script>
+</body>
+</html>
